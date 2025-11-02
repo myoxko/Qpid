@@ -1,0 +1,92 @@
+@use "./tokens" as *;
+
+/* =========================
+   GNB (Top Nav Bar) - centered pill nav
+========================= */
+
+.gnb {
+  position: fixed;
+  top: $gnb-top-offset;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+
+  width: auto;
+  height: $gnb-height;
+  display: inline-flex;
+  align-items: center;
+
+  /* pill / glass style on white */
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 9999px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+  padding: 0 12px;
+}
+
+.gnb-inner {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  width: auto;
+  height: $gnb-height;
+  padding: 0;
+  margin: 0;
+}
+
+.logo {
+  font-family: $font-family-display;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: $gray-700;
+}
+
+.gnb-links {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.gnb-link {
+  background: none;
+  border: 0;
+  cursor: pointer;
+  padding: 0 6px;
+
+  /* body-2 style */
+  font-family: $font-family-base;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.6;
+  letter-spacing: -0.03em;
+
+  color: $gray-700;
+  opacity: 0.9;
+  transition: opacity 0.15s, color 0.15s;
+  outline: none;
+  position: relative;
+}
+
+.gnb-link:hover {
+  opacity: 1;
+  color: $color-primary-accent;
+}
+
+.gnb-link.is-active {
+  opacity: 1;
+  color: $color-primary-main;
+}
+
+.gnb-link.is-active::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -8px;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 2px;
+  background: $color-primary-main;
+  border-radius: 999px;
+}

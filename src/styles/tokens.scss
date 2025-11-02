@@ -1,0 +1,41 @@
+// tokens.scss
+// Qpid design tokens (Light Theme)
+// - 컬러, 타이포, 레이아웃 공통 값들 모아둠
+// - 이 파일 수정은 전체 스타일에 영향 -> PR에서 같이 리뷰하기
+
+// ------------ Layout metrics ------------
+$gnb-height: 44px;          // pill nav height
+$gnb-top-offset: 16px;      // distance from top of viewport
+$page-max-width: 1280px;
+$page-padding-x: 24px;
+
+// ------------ Colors ------------
+$color-primary-main:   #3D72FF;  // 브랜드 블루
+$color-primary-accent: #FF7B00;  // 호버 오렌지
+$color-primary-light:  #EDF1FA;  // 연한 블루 배경
+$color-bg-base:        #FFFFFF;  // 전체 배경
+$color-neon:           #D0FF56;  // 포인트 네온
+
+// Gray scale / text
+$gray-700: #000000; // 기본 텍스트
+$gray-500: #717171; // 본문 설명
+$gray-400: #AEAEAE;
+$gray-350: #B9B9B9;
+$gray-300: #D9D9D9;
+
+// convenient aliases
+$color-text-primary: $gray-700;
+$color-text-dim:     $gray-500;
+
+// ------------ Typography ------------
+// Pretendard 우선, 없으면 system-ui 등으로 fallback
+$font-family-base: 'Pretendard', system-ui, -apple-system, BlinkMacSystemFont, "Inter", "Roboto", "Helvetica Neue", Arial, sans-serif;
+$font-family-display: $font-family-base;
+
+body {
+  background-color: $color-bg-base;
+  color: $color-text-primary;
+  font-family: $font-family-base;
+  font-size: 16px;
+  line-height: 1.5;
+}

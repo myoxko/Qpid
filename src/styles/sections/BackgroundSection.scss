@@ -1,0 +1,63 @@
+@use "../tokens" as *;
+
+/* BackgroundSection.scss
+   이 파일은 'background' 섹션 전용 스타일입니다.
+   여기서만 수정하면 다른 섹션에 영향 거의 없음.
+*/
+
+.background-section-root {
+  /* ===== 높이 커스텀 포인트 =====
+     기본은 '한 화면 이상' 차지하도록 min-height:100vh 설정.
+     만약 정확히 한 화면만 쓰고 싶으면 height:100vh 추가해도 됨.
+  */
+  min-height: var(--section-min-height, 100vh);
+
+  /* 상단 패딩: GNB(고정 네비)랑 겹치지 않게 여유 */
+  padding-top: calc($gnb-height + 2rem);
+  padding-bottom: 4rem;
+
+  /* 라이트 테마 배경 / 섹션 라인 */
+  background-color: $color-bg-base;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+
+  /* 레이아웃 */
+  display: flex;
+  align-items: flex-start; /* center로 바꾸면 수직 가운데 정렬 */
+  box-sizing: border-box;
+}
+
+.background-section-inner {
+  width: 100%;
+  max-width: $page-max-width;
+  margin: 0 auto;
+  padding: 0 $page-padding-x;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  text-align: center;
+}
+
+.background-title {
+  font-family: $font-family-display;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  color: $gray-700;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.background-desc {
+  max-width: 60ch;
+  font-family: $font-family-base;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: -0.03em;
+  color: $gray-500;
+  text-align: center;
+}
