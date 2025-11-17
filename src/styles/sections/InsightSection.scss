@@ -1,0 +1,415 @@
+@use "../tokens" as *;
+
+/* insightSection.scss */
+
+.insight-section-root {
+  min-height: var(--section-min-height, 100vh);
+  padding-top: calc($gnb-height + 2rem);
+  padding-bottom: 4rem;
+  background-color: $color-bg-base;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+
+  display: flex;
+  align-items: flex-start;
+  box-sizing: border-box;
+}
+
+.insight-section-inner {
+  width: 100%;
+  max-width: $page-max-width;
+  margin: 0 auto;
+  padding: 0 $page-padding-x;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  align-items: flex-start;
+  text-align: left;
+
+  --insight-offset: calc(-1 * $page-padding-x - 4rem);
+}
+
+/* ───────────────────────────────────────────── */
+/* 상단 텍스트 블록 */
+/* ───────────────────────────────────────────── */
+
+.insight-left-block {
+  width: 100%;
+  margin-top: 6rem;
+  margin-left: calc(-1 * $page-padding-x - 4rem);
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.interview-title {
+  color: $color-primary-main;
+  font-family: $font-family-display;
+  font-weight: 600;
+  font-size: 1.6rem;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+}
+
+.interview-sub {
+  font-family: $font-family-display;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.03em;
+  font-size: 3.5rem;
+  color: black;
+}
+
+/* ───────────────────────────────────────────── */
+/* 요약 + 인터뷰 카드 영역 */
+/* ───────────────────────────────────────────── */
+
+.insight-summary-and-quotes {
+  width: calc(100vw - 8rem); /* 좌우 4rem 여백 */
+  margin-left: calc(-50vw + 50% + 4rem);
+  margin-top: 4rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 4rem;
+}
+
+.insight-column {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  flex: 1 1 0;
+}
+
+.insight-summary {
+  font-family: $font-family-base;
+  font-size: 1.3rem;
+  line-height: 1.7;
+  color: $gray-500;
+  max-width: 600px;
+
+  margin: 0 auto;
+  text-align: left;
+}
+
+/* 가운데 세로 라인 */
+
+.insight-divider {
+  width: 1px;
+  background: rgba(0, 0, 0, 0.16);
+  flex-shrink: 0;
+  align-self: stretch;
+}
+
+/* 카드 리스트 */
+
+.insight-card-list {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.6rem;
+}
+
+/* 카드 + 종횡비 고정 + 텍스트 가운데 정렬 */
+
+.insight-quote-card {
+  border-radius: 1.6rem;
+  padding: 1.6rem 1.9rem;
+  background: #fff;
+  box-shadow: 0 12px 36px rgba(15, 23, 42, 0.1);
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  aspect-ratio: 4 / 3;
+  min-height: 180px;
+  justify-content: center;
+  gap: 1rem;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background-color 0.25s ease,
+    color 0.25s ease;
+}
+
+.insight-quote-text {
+  font-size: 1.2rem;
+  line-height: 1.65;
+  color: $gray-700;
+}
+
+.insight-quote-author {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: $gray-400;
+}
+
+/* Hover 인터랙션 – 좌: 파랑 / 우: 주황 */
+
+.insight-column-left .insight-quote-card:hover {
+  background-color: $color-primary-main;
+  transform: translateY(-6px) scale(1.05);
+  box-shadow: 0 22px 60px rgba(15, 23, 42, 0.22);
+
+  .insight-quote-text,
+  .insight-quote-author {
+    color: #fff;
+  }
+}
+
+.insight-column-right .insight-quote-card:hover {
+  background-color: #ff7a1a;
+  transform: translateY(-6px) scale(1.05);
+  box-shadow: 0 22px 60px rgba(15, 23, 42, 0.22);
+
+  .insight-quote-text,
+  .insight-quote-author {
+    color: #fff;
+  }
+}
+
+.insight-quote-card.is-accent-blue { }
+.insight-quote-card.is-accent-orange { }
+
+/* ───────────────────────────────────────────── */
+/* RESEARCH INSIGHTS 섹션 */
+/* ───────────────────────────────────────────── */
+
+.research-insights-section {
+  width: 100%;
+  margin-top: 12rem;
+}
+
+.research-top-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 3rem;
+}
+
+.research-text-block {
+  // max-width: 560px;
+  width: 100%;
+  margin-top: 6rem;
+  margin-left: calc(-1 * $page-padding-x - 4rem);
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.research-label {
+  color: $color-primary-main;
+  font-family: $font-family-display;
+  font-weight: 600;
+  font-size: 1.6rem;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+}
+
+.research-title {
+  font-family: $font-family-display;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.03em;
+  font-size: 3.5rem;
+  color: black;
+}
+
+/* 비행기 + 점선 */
+
+.research-plane-block {
+  position: relative;
+  flex: 1;
+  min-height: 220px;
+}
+
+.research-plane-path {
+  width: 100%;
+  height: 100%;
+}
+
+/* path 자체는 SVG 안에서 strokeDasharray 설정 */
+
+.research-paper-plane {
+  position: absolute;
+  width: 140px;
+  height: auto;
+  top: 40px;
+  right: 0;
+
+  /* motion-path 애니메이션용 */
+  offset-path: path("M 0 160 Q 180 80 300 120 T 600 60");
+  offset-distance: 0%;
+  offset-rotate: auto;
+}
+
+/* path 그려지는 효과 */
+.research-plane-path path {
+  stroke-dasharray: 600;
+  stroke-dashoffset: 600;
+}
+
+/* is-visible 상태에서 애니메이션 시작 */
+
+.research-insights-section.is-visible .research-plane-path path {
+  animation: research-draw-path 1.8s ease-out forwards;
+}
+
+.research-insights-section.is-visible .research-paper-plane {
+  animation: research-plane-along 1.8s ease-out forwards;
+}
+
+@keyframes research-draw-path {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes research-plane-along {
+  to {
+    offset-distance: 100%;
+  }
+}
+
+/* 카드 3개 */
+
+.research-cards-row {
+  margin-top: 4rem;
+  display: flex;
+  gap: 1.8rem;
+}
+
+.research-card {
+  flex: 0 0 260px;
+  background-color: $color-primary-main;
+  border-radius: 2.4rem;
+  padding: 1.8rem 1.8rem 2.2rem;
+  color: #fff;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+.research-card-top {
+  font-family: $font-family-base;
+  font-size: 0.9rem;
+  opacity: 0.85;
+}
+
+.research-card-id {
+  font-weight: 500;
+}
+
+.research-card-icon-wrap {
+  position: relative;
+  width: 72px;
+  height: 72px;
+}
+
+.research-card-circle {
+  width: 100%;
+  height: 100%;
+}
+
+.research-card-flower {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 38px;
+  height: 38px;
+}
+
+.research-card-title {
+  margin-top: auto;
+  font-family: $font-family-display;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+/* 결과 텍스트 */
+
+.research-result-block {
+  margin-top: 3rem;
+}
+
+.research-result-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.3rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.research-result-text {
+  font-family: $font-family-base;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #111;
+}
+
+.research-result-highlight {
+  color: $color-primary-main;
+  font-weight: 600;
+}
+
+/* ───────────────────────────────────────────── */
+/* 반응형 */
+/* ───────────────────────────────────────────── */
+
+@media (max-width: 1024px) {
+  .insight-summary-and-quotes {
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .insight-divider {
+    display: none;
+  }
+
+  .research-top-row {
+    flex-direction: column;
+  }
+
+  .research-plane-block {
+    width: 100%;
+  }
+
+  .research-cards-row {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 768px) {
+  .insight-section-inner {
+    --insight-offset: 0;
+  }
+
+  .insight-left-block {
+    margin-left: 0;
+  }
+
+  .insight-summary-and-quotes {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .insight-card-list {
+    grid-template-columns: 1fr;
+  }
+
+  .interview-sub {
+    font-size: 2.4rem;
+  }
+
+  .research-cards-row {
+    flex-direction: column;
+  }
+}

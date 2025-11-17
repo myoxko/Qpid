@@ -5,27 +5,23 @@
    여기서만 수정하면 다른 섹션에 영향 거의 없음.
 */
 
+/* ===== 섹션 루트 ===== */
 .home-section-root {
-  /* ===== 높이 커스텀 포인트 =====
-     기본은 '한 화면 이상' 차지하도록 min-height:100vh 설정.
-     만약 정확히 한 화면만 쓰고 싶으면 height:100vh 추가해도 됨.
-  */
-  min-height: var(--section-min-height, 100vh);
-
-  /* 상단 패딩: GNB(고정 네비)랑 겹치지 않게 여유 */
+  width: 100%;
+  min-height: 100vh;
   padding-top: calc($gnb-height + 2rem);
   padding-bottom: 4rem;
 
-  /* 라이트 테마 배경 / 섹션 라인 */
-  background-color: $color-bg-base;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-
-  /* 레이아웃 */
+  background-color: $color-primary-main; // 브랜드 블루
   display: flex;
-  align-items: flex-start; /* center로 바꾸면 수직 가운데 정렬 */
+  align-items: flex-start;
   box-sizing: border-box;
+
+  position: relative;
+  overflow: hidden;
 }
 
+/* ===== 안쪽 레이아웃 컨테이너 ===== */
 .home-section-inner {
   width: 100%;
   max-width: $page-max-width;
@@ -33,36 +29,168 @@
   padding: 0 $page-padding-x;
   box-sizing: border-box;
 
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-
-  /* 가운데 정렬 추가 */
   align-items: center;
-  text-align: center;
 }
 
-.home-title {
-  font-family: $font-family-display;
-  font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: -0.03em;
-  color: $gray-700;
+/* ========= 히어로 전체 (원 + 로고 + 폰) ========= */
+.home-hero {
+  position: relative;
+  width: 100%;
+  max-width: $page-max-width;
 
-  /* 요구사항 반영 */
-  font-size: 1.5rem;     /* 약 24px 근처 */
-  text-transform: uppercase;
-  text-align: center;
+  /* GNB 바로 아래부터 시작 */
+  margin-top: 0;
+  padding-top: clamp(3rem, 10vh, 5rem);
+  padding-bottom: clamp(2.5rem, 6vh, 3.5rem);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.home-desc {
-  max-width: 60ch;
+/* --- 배경 반원 (home_circle) --- */
+.home-circle {
+  position: absolute;
+  left: 50%;
+  top: 0;
+
+  /* 충분히 크게 (지금보다 조금만 키우면 됨) */
+  width: max(200vw, 2600px);
+  height: auto;
+
+  /* 🔥 훨씬 덜 올리기 → 화면에 더 많이 보이게 */
+  transform: translate(-50%, -55%);
+
+  object-fit: contain;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.95;
+}
+
+/* --- 로고 + 카피 묶음 --- */
+.home-hero-main {
+  position: relative;
+  z-index: 1; /* 원 위에 올라옴 */
+
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Qpid 로고 – 여기서 크기만 조절하면 됨 */
+.home-logo-image {
+  width: clamp(460px, 48vw, 980px);
+  height: auto;
+  object-fit: contain;
+}
+
+/* 카피 텍스트 (오른쪽 정렬) */
+.home-tagline {
+  margin-top: 1.5rem;
+  text-align: right;
   font-family: $font-family-base;
   font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.5;
-  letter-spacing: -0.03em;
-  color: $gray-500;
+  line-height: 1.6;
+  color: #ffffff;
+  max-width: 360px;
 
-  text-align: center;
+  align-self: flex-end;
+  margin-right: clamp(4rem, 10vw, 8rem);
+}
+
+/* ========= 폰 두 개 나란히 ========= */
+.home-phones {
+  position: relative;
+  z-index: 2; /* 로고보다 위 */
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: clamp(12px, 2.5vw, 32px);
+  width: 100%;
+
+  /* 로고와의 간격 – 여기 숫자가 '붙는 정도'를 결정 */
+  margin-top: clamp(0.2rem, 1vh, 0.8rem);
+}
+
+/* 폰 공통 */
+.home-phone {
+  width: clamp(260px, 24vw, 420px);
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 24px 64px rgba(0, 0, 0, 0.22));
+}
+
+/* 왼쪽 폰만 약간 위로 */
+.home-phone--left {
+  margin-bottom: 24px;
+}
+
+/* ===== 폰 떠다니는 애니메이션 ===== */
+@keyframes floatPhone {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.home-phone {
+  animation: floatPhone 4.2s ease-in-out infinite;
+}
+
+.home-phone--right {
+  animation-duration: 4.8s;
+  animation-delay: 0.3s;
+}
+
+/* ========= 반응형 ========= */
+@media (max-width: 1024px) {
+  .home-logo-image {
+    width: clamp(360px, 48vw, 620px);
+  }
+
+  .home-tagline {
+    margin-right: clamp(2.5rem, 6vw, 4rem);
+  }
+
+  .home-phone {
+    width: clamp(220px, 28vw, 360px);
+  }
+}
+
+@media (max-width: 768px) {
+  .home-hero {
+    padding-top: clamp(4rem, 18vh, 6rem);
+    padding-bottom: 3rem;
+  }
+
+  .home-circle {
+    transform: translate(-50%, -60%);
+    width: clamp(900px, 180vw, 1500px);
+  }
+
+  .home-tagline {
+    text-align: center;
+    align-self: center;
+    margin-right: 0;
+  }
+
+  .home-phones {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2.5rem;
+    gap: 1.5rem;
+  }
+
+  .home-phone,
+  .home-phone--left {
+    margin-bottom: 0;
+    width: min(82vw, 380px);
+  }
 }

@@ -4,6 +4,10 @@ import HeaderNav from "./components/HeaderNav.jsx";
 
 import HomeSection from "./sections/HomeSection.jsx";
 import BackgroundSection from "./sections/BackgroundSection.jsx";
+import GoalSection from "./sections/GoalSection.jsx";
+import InsightSection from "./sections/InsightSection.jsx";
+import PersonaSection from "./sections/PersonaSection.jsx"
+import IASection from "./sections/IASection.jsx"
 import SystemSection from "./sections/SystemSection.jsx";
 import ServiceSection from "./sections/ServiceSection.jsx";
 import VideoSection from "./sections/VideoSection.jsx";
@@ -12,7 +16,11 @@ export default function App() {
   // refs for scrolling / highlighting
   const homeRef = useRef(null);
   const backgroundRef = useRef(null);
+  const goalRef = useRef(null);
+  const insightRef = useRef(null);
+  const personaRef = useRef(null);
   const systemRef = useRef(null);
+  const iaRef = useRef(null);
   const serviceRef = useRef(null);
   const videoRef = useRef(null);
 
@@ -106,6 +114,38 @@ export default function App() {
           className="section-wrapper section-background"
         >
           <BackgroundSection />
+        </section>
+
+        {/* GOAL */}
+        <section
+          ref={goalRef}
+          className="section-wrapper section-background"
+        >
+          <GoalSection />
+        </section>
+
+        {/* INSIGHT */}
+        <section
+          ref={insightRef}
+          className="section-wrapper section-background"
+        >
+          <InsightSection />
+        </section>
+
+        {/* PERSONA */}
+        <section
+          ref={personaRef}
+          className="section-wrapper section-background"
+        >
+          <PersonaSection />
+        </section>
+
+        {/* IA */}
+        <section
+          ref={iaRef}
+          className="section-wrapper section-background"
+        >
+          <IASection />
         </section>
 
         {/* SYSTEM */}

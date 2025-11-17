@@ -1,6 +1,8 @@
 import React from "react";
 import "../styles/HeaderNav.scss";
 
+import nav_logo from "../assets/images_ms/nav_logo.svg";
+
 export default function HeaderNav({ activeSection, onSelect }) {
   const navItems = [
     { key: "home", label: "Home" },
