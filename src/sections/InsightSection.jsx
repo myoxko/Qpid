@@ -85,15 +85,17 @@ export default function InsightSection() {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
+          // 화면 안으로 들어올 때 애니메이션 시작
           section.classList.add("is-visible");
-          observer.disconnect();
+        } else {
+          // 화면 밖으로 나가면 애니메이션 리셋
+          section.classList.remove("is-visible");
         }
       },
       { threshold: 0.3 }
     );
 
     observer.observe(section);
-
     return () => observer.disconnect();
   }, []);
 
