@@ -1,63 +1,1277 @@
 @use "../tokens" as *;
 
-/* ServiceSection.scss
-   이 파일은 'service' 섹션 전용 스타일입니다.
-   여기서만 수정하면 다른 섹션에 영향 거의 없음.
-*/
-
+/* 섹션: 풀블리드 + 세로 잘림 방지 */
 .service-section-root {
-  /* ===== 높이 커스텀 포인트 =====
-     기본은 '한 화면 이상' 차지하도록 min-height:100vh 설정.
-     만약 정확히 한 화면만 쓰고 싶으면 height:100vh 추가해도 됨.
-  */
-  min-height: var(--section-min-height, 100vh);
-
-  /* 상단 패딩: GNB(고정 네비)랑 겹치지 않게 여유 */
-  padding-top: calc($gnb-height + 2rem);
-  padding-bottom: 4rem;
-
-  /* 라이트 테마 배경 / 섹션 라인 */
-  background-color: $color-bg-base;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-
-  /* 레이아웃 */
-  display: flex;
-  align-items: flex-start; /* center로 바꾸면 수직 가운데 정렬 */
-  box-sizing: border-box;
+  position: relative;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  background: linear-gradient(180deg, #e8f4ff 0%, #e9f2fb 60%, #ffffff 100%);
+  overflow-x: hidden;
 }
 
+
+/* 배경 꽃 */
+.service-section-flower {
+  position: absolute;
+  z-index: 1;
+  width: 6%;              /* 시안 기준 고정폭 */
+  aspect-ratio: 1 / 1;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.flower--1 {
+  top: 11%;
+  right: 21%;
+  transform: translate(-50%, -50%) rotate(-8deg);
+}
+
+.flower--2 {
+  top: 5%;
+  left: 33%;
+  transform: translate(-50%, -50%) rotate(-8deg);
+}
+
+.flower--3 {
+  top: 13%;
+  left: 23%;
+  transform: translate(-50%, 50%) rotate(12deg);
+}
+
+/* 내부 컨테이너: 가운데 정렬 + 충분한 세로 여백 */
 .service-section-inner {
+  max-width: $page-max-width; /* 2560px 가정 */
+  margin: 0 auto;
+  padding: 250px $page-padding-x 240px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  background-color: #E7F3FF;
+}
+
+/* 상단 배지 */
+.service-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  padding: 0 20px;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #3d72ff;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+/* 헤드라인 */
+.service-title {
+  text-align: center;
+  color: #000000;
+  font-weight: 600;
+  font-size: 50px;
+  margin: 10px 0 20px;
+
+  .accent {
+    color: $color-primary-main; /* #3D72FF */
+  }
+}
+
+/* 원 + 폰 묶음 */
+.mockup-wrap {
+  position: relative;   /* 자식 absolute 기준 */
+  z-index: 0;           /* 스택 기준 */
+  width: 1200px;        /* 필요시 1000~1400px로 조정 */
+  min-height: 1100px;   /* 원/폰이 잘리지 않도록 보장 */
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 뒤쪽 원 도형 (항상 뒤) */
+.bg-circle {
+  position: absolute;
+  left: 50%;
+  top: 1500px;                /* 50~62% 범위에서 미세조정 */
+  transform: translate(-50%, -50%);
+  width: 2560px;             /* 2560 → 2000으로 완화해 겹침 최소화 */
+  height: 2560px;
+  border-radius: 50%;
+  z-index: -1;               /* 텍스트/이미지 뒤로 */
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,1) 0%,
+    rgba(255,255,255,0) 100%
+  );
+}
+
+/* 폰 이미지 */
+.service-section-phone-main {
+  position: relative;
+  z-index: 1;
+  width: 100%;              /* 시안 기준 고정폭 */
+  aspect-ratio: 9 / 19.5;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  top: -580px;
+}
+
+
+/* ===== 온보딩 섹션 ===== */
+.onboarding-section {
   width: 100%;
   max-width: $page-max-width;
   margin: 0 auto;
-  padding: 0 $page-padding-x;
-  box-sizing: border-box;
+  padding-top: 120px;   /* 위 mockup과 간격 */
+  padding-bottom: 160px;
+  position: relative;
+  top: -1000px;
+}
+
+/* 상단 텍스트 */
+.onboarding-head {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.all-pill {
+  display: inline-block;
+  padding: 10px 18px;
+  color: #000000;
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-bottom: 18px;
+}
+
+.onboarding-title {
+  margin: 0 0 40px 0;
+  font-size: 2.8rem;
+  font-weight: 600;
+  color: #1C1F24;
+}
+
+.onboarding-desc {
+  margin: 0 auto 120px auto;
+  max-width: 800px;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #4a4f56;
+}
+
+/* 단계 그리드 */
+.onboarding-steps {
+  margin-top: 48px;
+}
+
+/* 4등분 그리드 – 라벨/점선/폰 모두 같은 열 정렬 */
+.step-labels,
+.steps-progress,
+.onboarding-phones-wrap {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 36px;
+  align-items: center;
+}
+
+/* 라벨 */
+.step-labels {
+  margin-bottom: 16px;
+}
+.step-label {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #3D72FF;
+  font-weight: 600;
+}
+
+/* 점선 진행선 + 점 */
+.steps-progress {
+  position: relative;
+  height: 28px;
+  margin-bottom: 24px;
+
+  /* 점선 라인 */
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0; right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    border-top: 2px dashed #98B6FF;
+  }
+}
+
+/* 점 4개 — 그리드 각 셀 중앙에 */
+.steps-progress .dot {
+  width: 20px;
+  height: 20px;
+  margin: 0 auto;
+  border-radius: 50%;
+  background: #3D72FF;
+  display: block;
+  z-index: 1;
+}
+
+/* 휴대폰 4장 */
+.onboarding-phones-wrap {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 36px;
+  align-items: end;     /* 폰 하단 기준 맞춤 */
+  padding: 40px 0;      /* 위/아래 여백 */
+  z-index: 0;           /* 스택 기준 */
+}
+
+.ribbon-under-phones {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 0;                 /* 폰보다 뒤 */
+  pointer-events: none;
+  display: block;
+
+  /* 크기(가로 기준) — 필요시 숫자만 바꿔서 맞추면 됨 */
+  width: 2800px;              /* 2560 기준으로 축소: 원하는 폭으로 조절 */
+
+  height: auto;               /* 비율 유지 (764 / 2560) */
+  
+  /* 봉우리 깊이(368px)를 실제 표시 크기에 맞춰 위로 올려 배치
+  2560 기준의 비율: 368/2560 = 0.14375
+   => bottom을 - (width * 0.14375)로 잡으면 봉우리 꼭대기가 폰 아래쪽에 딱 들어감 */
+  bottom: -100px;
+  overflow:hidden;
+  }
+
+.onboarding-phone {
+  width: 90%;          /* 시안 비율에 맞춰 고정 */
+  height: auto;
+  justify-self: center;
+  z-index: 1;            /* 밴드 위에 오도록 */
+  filter: drop-shadow(0 0px 25px rgba(0,0,0,0.10));
+}
+
+
+
+/* 반응형 – 좁아지면 2열, 더 좁으면 1열 */
+@media (max-width: 1200px) {
+  .step-labels,
+  .steps-progress,
+  .phones-wrap {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 24px;
+  }
+  .onboarding-phones-wrap::before { width: 900px; height: 220px; }
+  .onboarding-phone { width: 220px; }
+}
+
+@media (max-width: 680px) {
+  .step-labels,
+  .steps-progress,
+  .onboarding-phones-wrap {
+    grid-template-columns: 1fr;
+  }
+  .onboarding-phones-wrap::before { width: 560px; height: 200px; }
+  .onboarding-phone { width: 260px; }
+}
+
+/* ===== HOME SECTION ===== */
+.service-home-section {
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  top: -900px; /* 너가 쓰던 값 유지 */
+}
+
+/* 헤더 */
+.service-home-head {
+  text-align: left;
+  max-width: 1160px;
+  margin-bottom: 160px;
+}
+.service-home-pill {
+  display: inline-block;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #000000;
+  margin-bottom: 18px;
+}
+.service-home-title {
+  margin: 0 0 20px 0;
+  font-size: 2.8rem;
+  font-weight: 600;
+  color: #1C1F24;
+}
+.service-home-desc {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #4A4F56;
+}
+
+/* 카드(컨테이너) */
+.service-home-card {
+  position: relative;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 40px;
+  padding: 36px;
+  max-width: 1700px;   /* 넉넉한 폭 지정 */
+}
+
+/* 카드 상단 브레드크럼 */
+.service-home-breadcrumb {
+  font-size: 18px;
+  color: #3A3A3A;
+  margin-bottom: 26px;
+  font-size: 600;
+}
+
+/* ★ 카드 내부 2컬럼 그리드 (왼쪽 큰 폰 / 오른쪽 내용) */
+.service-home-card-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr; /* 왼쪽 고정폭 + 오른쪽 유동 */
+  column-gap: 48px;
+  align-items: center;
+}
+
+/* 왼쪽 큰 폰 래퍼 */
+.service-home-card-left {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 왼쪽 큰 폰 이미지 박스 */
+.service-home-phone-main {
+  position: absolute;
+  width: 150%;
+  aspect-ratio: 9 / 19.5;
+  background-repeat: no-repeat;
+  /* background-position: top; */
+  background-size: contain;
+  z-index: 0;
+  top: -600px;
+  left: 100px;
+  margin-left: 5%;
+}
+
+/* 오른쪽 콘텐츠 래퍼 */
+.service-home-card-right {
+  min-width: 0; /* 긴 텍스트 줄바꿈 안정화 */
+  margin-top: 5%;
+}
+
+/* 카드 타이틀/설명 */
+.service-home-card-title {
+  margin: 0 0 20px 0;
+  font-size: 1.8rem;
+  line-height: 1.4;
+  color: #000000;
+  font-weight: 700;
+}
+.service-home-card-desc {
+  margin: 0 0 96px 0;
+  font-size: 15px;
+  line-height: 1.7;
+  color: #717171;
+}
+
+/* 카드 안의 작은 폰 2개 */
+.service-home-phones-inline,
+.service-home-captions {
+  position: relative;
+  display: flex;
+  gap: 20px;
+  align-items: flex-end;
+  margin: 10px 0 18px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 6px;
+  max-width: 500px;
+  z-index: 1;
+  background-position: center;
+}
+
+.service-home-phone {
+  width: 238px;     /* 시안 기준 고정 */
+  aspect-ratio: 9 / 19.5;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.service-home-cap {
+  background: #F5F7FA;
+  border-radius: 14px;
+  padding: 12px 14px;
+  font-size: 13px;
+  color: #2E343C;
+  line-height: 1.5;
+}
+
+/* 반응형(선택) — 좁아지면 한 열로 쌓기 */
+@media (max-width: 1280px) {
+  .service-home-card-grid {
+    grid-template-columns: 1fr;
+    row-gap: 28px;
+  }
+  .service-home-phone-main {
+    width: 460px;
+    margin: 0 auto;
+  }
+}
+
+/* ===== service-home-card 안 플로우 ===== */
+.service-flow {
+  margin-top: 60px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== 위: 단일 폰 + 말풍선 ===== */
+.flow-top {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto 40px auto;
 
   display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  align-items: flex-start;
+  gap: 40px;
   align-items: center;
+  z-index: 1;
+}
+
+.flow-top-phone {
+  position: relative;
+}
+
+.flow-phone {
+  display: block;
+  width: 260px;   /* 하단 기본 폰 폭 */
+  height: auto;
+  filter: drop-shadow(0 8px 24px rgba(0,0,0,0.12));
+}
+
+.flow-badge {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  min-width: 34px;
+  height: 34px;
+  padding: 0 8px;
+  border-radius: 999px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #FF7A00;
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1;
+}
+
+.flow-badge--small {
+  min-width: 30px;
+  height: 30px;
+  font-size: 12px;
+}
+
+/* 말풍선 */
+.flow-callout {
+  position: relative;
+  margin-top: 20px;         /* 폰 상단보다 살짝 내려오게 */
+  padding: 16px 18px;
+  border-radius: 16px;
+  background: #F3F7FF;
+  color: #2E343C;
+  font-size: 14px;
+  line-height: 1.6;
+  max-width: 360px;
+  word-break: keep-all;
+}
+
+/* 말풍선 꼬리 */
+.flow-callout::after {
+  content: "";
+  position: absolute;
+  left: -10px;              /* 왼쪽에 꼬리 */
+  top: 22px;
+  border-width: 10px;
+  border-style: solid;
+  border-color: transparent #F3F7FF transparent transparent;
+}
+
+/* ===== 구분 점선 ===== */
+.flow-sep {
+  position: absolute;
+  height: 1px;
+  width: 100%;
+  margin: 24px auto 10px auto;
+  border-top: 2px dashed #9BB7FF;
+  opacity: 0.9;
+  justify-content: center;
+  top: 21%;
+  z-index: 0;
+}
+
+/* ===== 구분 점선 ===== */
+.flow-sep2 {
+  position: absolute;
+  height: 1px;
+  width: 100%;
+  margin: 24px auto 10px auto;
+  border-top: 2px dashed #9BB7FF;
+  opacity: 0.9;
+  justify-content: center;
+  top: 70%;
+  z-index: 0;
+}
+
+/* ===== 아래: 3개 폰 행 ===== */
+.flow-bottom {
+  position: relative;
+  width: 100%;
+  max-width: 1400px;
+  margin: 60px auto 100px auto;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 9px;
+  align-items: start;
+  justify-items: center;
+  z-index: 1;
+}
+
+/* 각 아이템 */
+.flow-item {
   text-align: center;
 }
 
-.service-title {
-  font-family: $font-family-display;
-  font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: -0.03em;
-  color: $gray-700;
-  font-size: 1.5rem;
-  text-transform: uppercase;
-  text-align: center;
+.flow-phone-wrap {
+  position: relative;
+  display: inline-block;
 }
 
-.service-desc {
-  max-width: 60ch;
-  font-family: $font-family-base;
-  font-size: 1rem;
+/* 하단 캡션 */
+.flow-cap {
+  margin: 10px auto 0 auto;
+  padding: 10px 12px;
+  background: #F6F8FB;
+  border-radius: 14px;
+
+  font-size: 13px;
+  line-height: 1.6;
+  color: #2E343C;
+
+  width: 90%;
+  max-width: 360px;
+}
+
+/* 반응형(선택) */
+@media (max-width: 1200px) {
+  .flow-top { gap: 24px; }
+  .flow-phone--large { width: 280px; }
+  .flow-bottom { gap: 36px; }
+}
+
+@media (max-width: 900px) {
+  .flow-bottom {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+}
+
+
+/* ===== HOME · 교수 섹션 ===== */
+.service-home-prof-section {
+  width: 100%;
+  max-width: $page-max-width; /* 2560px 기준 */
+  margin: 0 auto;
+  position:relative;
+  top: -700px;  
+}
+
+.prof-head {
+  text-align: left;
+  max-width: 1160px;
+}
+
+.prof-breadcrumb {
+  font-size: 18px;
+  color: #3A3A3A;
+  margin-bottom: 10px;
+}
+
+.prof-title {
+  margin: 0 0 20px 0;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #000000;
+}
+
+.prof-desc {
+  margin: 0 0 96px 0;
+  font-size: 15px;
+  line-height: 1.7;
+  color: #717171;
+}
+
+/* 래퍼를 2컬럼 그리드로 */
+.prof-phones-wrap.prof-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1.5fr; /* 왼쪽 조금 더 넓게 */
+  align-items: end;
+  max-width: 1700px;
+  margin: 40px auto 0;
+}
+
+/* 왼쪽 컬럼 */
+.prof-col-left {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+/* 오른쪽 컬럼 */
+.prof-col-right {
+  position: relative;          /* 점선 위치 기준 */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* 점선 진행선 (오른쪽 컬럼 상단) */
+.prof-progress-line {
+  position: relative;
+  width: 70%;
+  height: 0;
+  border-top: 2px dashed #98b6ff;
+  margin-bottom: 72px;         /* 점선 아래 공간(폰과 간격) */
+  justify-items: left;
+}
+
+.prof-progress-line .line-dot {
+  position: absolute;
+  right: -8px;                 /* 끝부분 약간 바깥 */
+  top: -6px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #3d72ff;
+  box-shadow:
+    0 0 12px rgba(61,114,255,0.75),
+    0 0 24px rgba(61,114,255,0.35);
+  display: block;
+}
+
+/* 오른쪽의 작은 폰 2개 */
+.prof-right-phones {
+  display: flex;
+  gap: 48px;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+/* 공통 폰 크기 */
+.prof-phone {
+  width: 310px;      /* 작은 폰 기본 */
+  height: auto;
+  filter: drop-shadow(0 10px 30px rgba(0,0,0,0.12));
+}
+.prof-phone--big {
+  width: 380px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+/* 반응형(선택) */
+@media (max-width: 1500px) {
+  .prof-phones-wrap.prof-grid { column-gap: 48px; }
+  .prof-phone--big { width: 480px; }
+  .prof-phone { width: 320px; }
+}
+
+@media (max-width: 1200px) {
+  .prof-phones-wrap.prof-grid {
+    grid-template-columns: 1fr;   /* 세로 스택 */
+    row-gap: 36px;
+  }
+  .prof-col-right { width: 100%; }
+  .prof-right-phones { gap: 36px; }
+  .prof-progress-line { width: 88%; }
+}
+
+/* ========== 카드 장면 ========== */
+.cards-scene {
+  position: relative;
+  width: 100vw;
+  background: #E7F3FF; /* 배경 라이트 블루 */
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  overflow: hidden;
+  top: -450px;
+}
+
+.cards-scene-inner {
+  position: relative;
+  max-width: $page-max-width; /* 네가 쓰는 2560px 토큰 */
+  height: 1000px;             /* 섹션 높이 */
+  margin: 0 auto;
+}
+
+
+/* 두 겹 타원 스택 */
+.scene-ovals {
+  position: absolute;
+  width: 1400px;
+  height: 650px;
+  margin: 0 auto;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* 아래(큰) 타원 */
+.scene-ovals::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  width: 1400px;
+  height: 680px;
+  border-radius: 0 0 60% 60% / 0 0 120% 120%;
+  background: linear-gradient(
+              to bottom,
+              #F4F6FA 0%,
+              #C9E3FF 100%);
+  z-index: 0;
+}
+
+/* 위(작은) 타원 — 살짝 위로/왼쪽으로 오프셋 */
+.scene-ovals::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 24px;                   /* 겹침 정도 조절 */
+  transform: translateX(-50%);
+  width: 1000px;               /* 아래보다 작게 */
+  height: 480px;
+  border-radius: 0 0 60% 60% / 0 0 120% 120%;
+  background: linear-gradient(
+              to bottom,
+              #F4F6FA 0%,
+              #C9E3FF 100%);
+  z-index: 1;                  /* 위로 올라오게 */
+}
+
+/* 카드 공통 */
+.card {
+  position: absolute;
+  width: 610px;    /* 카드 가로 */
+  height: 337px;   /* 카드 세로 */
+  border-radius: 18px;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 26px;
+  transform-origin: center;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.card-blue-orange {
+  position: relative;
+  margin: 0 auto;
+  width: 20%;
+  height: 10%;
+  object-fit: contain;
+}
+
+/* 블루 카드 위치/스타일 */
+.card--blue {
+  position: absolute;
+  left: -60%;
+  top: 420px;
+  transform: rotate(-11deg);
+  background:
+    linear-gradient(135deg, #1a6cff 0%, #1b59ff 45%, #1a47ff 100%);
+  z-index: 3;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+/* 오렌지 카드 위치/스타일 */
+.card--orange {
+  position: absolute;
+  left: 30%;         /* 위치 조절 */
+  top: 260px;
+  transform: rotate(15deg);
+  background: linear-gradient(135deg, #ff8a00 0%, #ff6a00 100%);
+  z-index: 2;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+/* 블루 카드 내부 텍스트 */
+.card-badge {
+  position: absolute;
+  top: 23px;
+  font-size: 26px;
+  font-weight: 200;
+}
+
+.card-num {
+  font-size: 90px;
   font-weight: 400;
-  line-height: 1.5;
-  letter-spacing: -0.03em;
-  color: $gray-500;
-  text-align: center;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.card-title {
+  font-size: 30px;
+  font-weight: 400;
+  margin-bottom: 8px;
+}
+
+/* 오렌지 카드 내부 텍스트 */
+.card-title-sm {
+  position: absolute;
+  top: 23px;
+  font-size: 26px;
+  font-weight: 200;
+}
+
+/* 작은 라임색 동그라미(우상단 배지 느낌) — 둘 다 공통 */
+.card::after {
+  content: "";
+  position: absolute;
+  top: 30px;
+  right: 23px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #D0FF56;
+}
+
+/* 색종이(도트) */
+.confetti .dot {
+  position: absolute;
+  border-radius: 50%;
+}
+
+/* 도트 개별 위치/색상 */
+.d1 { left: 430px; top: 300px; background:#1278FF; width:31px; height:31px;}
+.d2 { left: 280px; bottom: 500px; background:#D0FF56; width:47px; height:47px;}
+.d3 { left: 400px; bottom: 250px; background:#FF7C00; width:53px; height:53px;}
+.d4 { left: 500px; top: 350px; background:#ffffff; width:31px; height:31px; }
+.d5 { left: 800px; top: 100px; background:#FF7C00; width:30px; height:30px; }
+.d6 { right: 500px; top: 150px; background:#1278FF; width:15px; height:15px; }
+.d7 { right: 220px; top: 450px; background:#D0FF56; width:40px; height:40px; }
+.d8 { right: 320px; bottom: 320px; background:#1278FF; width:31px; height:31px; }
+.d9 { left: 890px; top: 90px; background:#ffffff; width:20px; height:20px; }
+.d10 { left: 860px; top: 280px; background:#D0FF56; width:15px; height:15px; }
+.d11 { right: 700px; top: 200px; background:#FF7C00; width:31px; height:31px; }
+
+/* 반응형(선택) */
+@media (max-width: 1440px) {
+  .cards-scene-inner { height: 620px; }
+  .scene-back-oval { width: 1100px; height: 480px; }
+  .card { width: 380px; height: 232px; }
+  .card--blue { left: 140px; top: 330px; }
+  .card--orange { left: 440px; top: 190px; }
+  .card-num { font-size: 42px; }
+}
+
+
+/* ===== COMMUNITY SECTION ===== */
+.service-community-section {
+  position: relative;
+  width: 100vw;
+  top: -400px;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  background: #17181D;      /* 다크 배경 */
+  overflow: hidden;
+}
+
+/* 안쪽 컨테이너 (2560 기준 중앙정렬) */
+.service-community-inner {
+  max-width: 2560px;
+  margin: 0 auto;
+  padding: 150px 120px;
+  padding-bottom: 300px;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;  /* 왼쪽이 조금 더 넓게 */
+  column-gap: 80px;
+  align-items: center;
+  position: relative;
+  z-index: 1;               /* 배경 웨이브 위로 */
+}
+
+/* 배경 웨이브(곡선) 이미지: 섹션 뒤쪽 전체에 깔기 */
+.service-community-bg {
+  position: absolute;
+  inset: 0;                 /* top/right/bottom/left: 0 */
+  background-repeat: no-repeat;
+  background-position: 60% 66%;
+  background-size: 2800px auto;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* 왼쪽 휴대폰 묶음 */
+.comm-phones {
+  position: relative;
+  height: 680px;            /* 겹치기용 고정 높이 */
+}
+
+/* 두 장의 폰을 살짝 겹치게 배치 */
+.comm-phone {
+  position: absolute;
+  display: block;
+  height: 750px;            /* 공통 높이 */
+  width: auto;
+}
+
+.comm-phone--left {
+  left: 40px;
+  top: 0;
+}
+
+.comm-phone--right {
+  left: 480px;              /* 오른쪽으로 이동해 겹침 */
+  top: 80px;
+}
+
+/* 오른쪽 카피 영역 */
+.comm-copy {
+  color: #cdd4e1;
+  max-width: 720px;
+}
+
+.comm-pill {
+  display: inline-block;
+  color: #9fb3ff;
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.comm-title {
+  margin: 0 0 16px 0;
+  color: #ffffff;
+  font-weight: 7500;
+  font-size: 1.8rem;
+}
+
+.comm-desc {
+  margin: 0;
+  color: #B7B7B7;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+/* --- 반응형 --- */
+@media (max-width: 1440px) {
+  .service-community-inner { padding: 140px 80px; column-gap: 56px; }
+  .service-community-bg { background-size: 1200px auto; }
+  .comm-phone { height: 560px; }
+  .comm-phone--right { left: 300px; top: 48px; }
+  .comm-title { font-size: 30px; }
+}
+
+@media (max-width: 1080px) {
+  .service-community-inner {
+    grid-template-columns: 1fr;
+    row-gap: 40px;
+    padding: 120px 48px;
+  }
+  .comm-phones { height: 560px; }
+  .comm-phone { height: 520px; }
+  .comm-phone--left { left: 10%; }
+  .comm-phone--right { left: 42%; }
+}
+
+
+/* ===== CHAT SECTION ===== */
+.service-chat-section {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  /* 밝은 그라디언트 배경 + 오른쪽 상단 살짝 하이라이트 */
+  background: #F4F6FA;
+  overflow: hidden;
+  top: -435px;
+}
+
+/* 안쪽 그리드(2560 기준) */
+.service-chat-inner {
+  max-width: 2560px;
+  height: 1400px;
+  margin: 0 auto;
+  padding: 140px 120px 120px;
+  display: grid;
+  grid-template-columns: 1fr 2fr;  /* 좌/우 비율 */
+  column-gap: 80px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* 왼쪽 폰 */
+.chat-left { 
+  position: relative;
+  left: 25%;
+}
+.chat-phone {
+  width: auto;    /* 필요 시 480~560px 조정 */
+  height: 750px;
+  display: block;
+  filter: drop-shadow(0 18px 50px rgba(0,0,0,0.25));
+}
+
+/* 오른쪽 텍스트 */
+.chat-right { 
+  position: relative;
+  top: -15%;
+}
+.chat-pill {
+  display: inline-block;
+  padding: 10px 0px;
+  color: #3A3A3A;
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+.chat-title {
+  margin: 0 0 14px 0;
+  font-size: 34px;
+  font-weight: 600;
+  color: #1c1f24;
+}
+.chat-desc {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.9;
+  color: #3A3A3A;
+  font-weight: 400;
+}
+
+.chat-circle {
+  position: absolute;
+  z-index: 0;
+  right: 3%;
+  top: -15%;
+  background: radial-gradient(ellipse at 50% 50%, 
+              #3D72FF 0%, #F4F6FA 50%);
+  width: 1200px;
+  height: 1200px;
+  opacity: 0.2;
+  border-radius: 9999px;
+}
+
+
+.chat-bg-wrap {
+  position: absolute;
+  width: 2240px;
+  height: 500px;
+  top: 1000px;
+  left: 0%;
+}
+
+/* 점선 곡선 배경 (좌하단 → 우상향) */
+.chat-curve {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 70%;
+  background-repeat: no-repeat;
+  background-position: 8% 100%;   /* 시작점 쪽 */
+  background-size: 70% auto;      /* 곡선 PNG 크기 */
+  opacity: 0.9;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* 종이비행기 (우하단) */
+.chat-plane {
+  position: absolute;
+  right: 517px;
+  bottom: 312px;
+  width: 220px;      /* 원본 비율 유지 */
+  height: auto;
+  filter: drop-shadow(0 12px 28px rgba(0,0,0,0.22));
+  z-index: 1;        /* 곡선보다 위, 텍스트/폰과 같은 레벨 */
+}
+
+/* 반응형 */
+@media (max-width: 1440px) {
+  .service-chat-inner { 
+    padding: 120px 80px; 
+    column-gap: 56px; 
+  }
+  .chat-phone { width: 460px; }
+  .chat-title { font-size: 30px; }
+  .chat-curve { background-size: 82% auto; }
+  .chat-plane { right: 10%; bottom: 10%; width: 190px; }
+}
+
+@media (max-width: 1080px) {
+  .service-chat-inner {
+    grid-template-columns: 1fr;
+    row-gap: 36px;
+    padding: 100px 48px 120px;
+  }
+  .chat-left { order: 1; display: flex; justify-content: center; }
+  .chat-right { order: 2; }
+  .chat-phone { width: 420px; }
+  .chat-curve { background-position: 0 100%; background-size: 110% auto; }
+  .chat-plane { right: 6%; bottom: 8%; width: 160px; }
+}
+
+
+/* ===== MY PAGE SECTION ===== */
+.service-mypage-section {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  background: #fafcff; /* 아주 연한 배경 */
+  overflow: hidden;
+}
+
+.service-mypage-inner {
+  max-width: 2560px;
+  margin: 0 auto;
+  padding: 120px 120px 160px;
+  position: relative;
+}
+
+/* 헤더 */
+.mypage-head {
+  max-width: 1160px;
+  margin-bottom: 48px;
+}
+.mypage-pill {
+  display: inline-block;
+  font-weight: 700;
+  font-size: 14px;
+  color: #3d72ff;
+  margin-bottom: 10px;
+}
+.mypage-title {
+  margin: 0 0 10px 0;
+  font-size: 42px;
+  font-weight: 700;
+  color: #1c1f24;
+}
+.mypage-desc {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #4a4f56;
+}
+
+/* 가운데 하이라이트 밴드 (스크린샷의 연한 블루 영역) */
+.mypage-band {
+  position: absolute;
+  left: 50%;
+  top: 44%;
+  transform: translateX(-50%);
+  width: 78%;
+  height: 42%;
+  border-radius: 40px;
+  background: linear-gradient(180deg, rgba(194,219,255,0.28) 0%, rgba(233,241,255,0.36) 100%);
+  filter: blur(0.2px); /* 살짝 부드럽게 */
+  z-index: 0;
+}
+
+/* 각 행(폰 + 텍스트) */
+.mypage-row {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 0.9fr 1fr; /* 왼쪽 폰 / 오른쪽 텍스트 */
+  align-items: center;
+  column-gap: 80px;
+  padding: 60px 0;
+
+  & + .mypage-row { padding-top: 80px; }
+}
+
+/* 왼쪽 폰 */
+.mypage-phone img {
+  width: 420px; /* 필요시 380~460px로 조절 */
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 18px 50px rgba(0,0,0,0.18));
+}
+
+/* 오른쪽 텍스트 */
+.mypage-right { max-width: 720px; }
+.mypage-subpill {
+  display: inline-block;
+  font-size: 13px;
+  color: #8a93a1;
+  margin-bottom: 8px;
+}
+.mypage-subtitle {
+  margin: 0 0 10px 0;
+  font-size: 26px;
+  font-weight: 700;
+  color: #1c1f24;
+}
+.mypage-right-desc {
+  margin: 0 0 24px 0;
+  font-size: 15px;
+  line-height: 1.8;
+  color: #4a4f56;
+}
+
+/* 이미지 카드 그리드 */
+.mypage-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 180px));
+  gap: 12px;
+}
+.mypage-card-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+
+/* 반응형 */
+@media (max-width: 1440px) {
+  .service-mypage-inner { padding: 100px 80px 140px; }
+  .mypage-row { column-gap: 56px; }
+  .mypage-phone img { width: 380px; }
+  .mypage-band { width: 84%; height: 46%; }
+}
+@media (max-width: 1080px) {
+  .mypage-row {
+    grid-template-columns: 1fr;
+    row-gap: 18px;
+  }
+  .mypage-phone { order: 1; }
+  .mypage-right { order: 2; }
+  .mypage-phone img { width: 340px; margin: 0 auto; }
+  .mypage-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
