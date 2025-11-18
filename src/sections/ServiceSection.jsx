@@ -83,7 +83,7 @@ export default function ServiceSection() {
             className="service-section-phone-main"
             style={{ backgroundImage: `url(${PhoneMain})` }}
           />
-          <div className="bg-circle" />
+          {/* <div className="bg-circle" /> */}
         </div>
 
         {/* ===== 온보딩 섹션 ===== */}
@@ -500,17 +500,28 @@ export default function ServiceSection() {
 
                 {/* 리스트 카드 → 이미지로 교체 */}
                 <div className="mypage-cards">
-                  <img
+                  <div className="mypage-img-col1">
+                    <img
                     src={CardA}
                     alt="내 활동 요약"
                     className="mypage-card-img"
                   />
+                  </div>
+                  <div className="mypage-img-col2">
+                    <img
+                    src={CardB}
+                    alt="질문 관리"
+                    className="mypage-card-img"
+                  />
+                  </div>
+                  
                 </div>
+              
               </div>
             </section>
 
             {/* ====== 블록 B: 교수 ====== */}
-            <section className="mypage-row mypage-row--prof">
+            <section className="mypage-row2 mypage-row--prof">
               <div
                 className="mypage-phone"
               >
@@ -530,14 +541,7 @@ export default function ServiceSection() {
                   학생들과의 소통을 꾸준히 이어가보세요.
                 </p>
 
-                {/* 필요 시 교수용 카드 이미지들 */}
-                <div className="mypage-cards">
-                  <img
-                    src={CardB}
-                    alt="질문 관리"
-                    className="mypage-card-img"
-                  />
-                </div>
+                
               </div>
             </section>
           </div>

@@ -44,11 +44,10 @@
 .service-section-inner {
   max-width: $page-max-width; /* 2560px 가정 */
   margin: 0 auto;
-  padding: 250px $page-padding-x 240px;
+  padding: 250px $page-padding-x 0px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 32px;
   background-color: #E7F3FF;
 }
 
@@ -84,15 +83,15 @@
   position: relative;   /* 자식 absolute 기준 */
   z-index: 0;           /* 스택 기준 */
   width: 1200px;        /* 필요시 1000~1400px로 조정 */
-  min-height: 1100px;   /* 원/폰이 잘리지 않도록 보장 */
+  height: 1100px;   /* 원/폰이 잘리지 않도록 보장 */
   margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-/* 뒤쪽 원 도형 (항상 뒤) */
-.bg-circle {
+.mockup-wrap::before {
+  content: "";
   position: absolute;
   left: 50%;
   top: 1500px;                /* 50~62% 범위에서 미세조정 */
@@ -104,9 +103,27 @@
   background: linear-gradient(
     to bottom,
     rgba(255,255,255,1) 0%,
-    rgba(255,255,255,0) 100%
+    rgba(255,255,255,0) 50%
   );
+  clip-path: inset(0 0 50% 0); /* 아래쪽 50% 컷 */
 }
+
+// /* 뒤쪽 원 도형 (항상 뒤) */
+// .bg-circle {
+  // position: absolute;
+  // left: 50%;
+  // top: 1500px;                /* 50~62% 범위에서 미세조정 */
+  // transform: translate(-50%, -50%);
+  // width: 2560px;             /* 2560 → 2000으로 완화해 겹침 최소화 */
+  // height: 2560px;
+  // border-radius: 50%;
+  // z-index: -1;               /* 텍스트/이미지 뒤로 */
+  // background: linear-gradient(
+  //   to bottom,
+  //   rgba(255,255,255,1) 0%,
+  //   rgba(255,255,255,0) 100%
+  // );
+// }
 
 /* 폰 이미지 */
 .service-section-phone-main {
@@ -117,7 +134,6 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-  top: -580px;
 }
 
 
@@ -129,7 +145,6 @@
   padding-top: 120px;   /* 위 mockup과 간격 */
   padding-bottom: 160px;
   position: relative;
-  top: -1000px;
 }
 
 /* 상단 텍스트 */
@@ -284,7 +299,6 @@
   width: 100%;
   margin: 0 auto;
   position: relative;
-  top: -900px; /* 너가 쓰던 값 유지 */
 }
 
 /* 헤더 */
@@ -304,13 +318,13 @@
   margin: 0 0 20px 0;
   font-size: 2.8rem;
   font-weight: 600;
-  color: #1C1F24;
+  color: #000000;
 }
 .service-home-desc {
   margin: 0;
   font-size: 1rem;
   line-height: 1.7;
-  color: #4A4F56;
+  color: #717171;
 }
 
 /* 카드(컨테이너) */
@@ -595,9 +609,8 @@
 .service-home-prof-section {
   width: 100%;
   max-width: $page-max-width; /* 2560px 기준 */
-  margin: 0 auto;
+  margin: 100px auto 150px;
   position:relative;
-  top: -700px;  
 }
 
 .prof-head {
@@ -719,7 +732,7 @@
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
   overflow: hidden;
-  top: -450px;
+  align-items: center;
 }
 
 .cards-scene-inner {
@@ -901,7 +914,6 @@
 .service-community-section {
   position: relative;
   width: 100vw;
-  top: -400px;
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
   background: #17181D;      /* 다크 배경 */
@@ -936,7 +948,8 @@
 /* 왼쪽 휴대폰 묶음 */
 .comm-phones {
   position: relative;
-  height: 680px;            /* 겹치기용 고정 높이 */
+  height: 680px;   
+  left: 25px;
 }
 
 /* 두 장의 폰을 살짝 겹치게 배치 */
@@ -981,7 +994,7 @@
 .comm-desc {
   margin: 0;
   color: #B7B7B7;
-  font-size: 15px;
+  font-size: 18px;
   line-height: 1.7;
 }
 
@@ -1016,7 +1029,6 @@
   /* 밝은 그라디언트 배경 + 오른쪽 상단 살짝 하이라이트 */
   background: #F4F6FA;
   overflow: hidden;
-  top: -435px;
 }
 
 /* 안쪽 그리드(2560 기준) */
@@ -1059,17 +1071,15 @@
   margin-bottom: 12px;
 }
 .chat-title {
-  margin: 0 0 14px 0;
-  font-size: 34px;
-  font-weight: 600;
-  color: #1c1f24;
+  margin: 0 0 16px 0;
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: #000000;
 }
 .chat-desc {
-  margin: 0;
-  font-size: 16px;
-  line-height: 1.9;
-  color: #3A3A3A;
-  font-weight: 400;
+  font-size: 18px;
+    color: #3A3A3A;
+    margin-bottom: 10px;
 }
 
 .chat-circle {
@@ -1149,17 +1159,17 @@
 /* ===== MY PAGE SECTION ===== */
 .service-mypage-section {
   position: relative;
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
-  background: #fafcff; /* 아주 연한 배경 */
-  overflow: hidden;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    background: #F4F6FA;
+    overflow: hidden;
 }
 
 .service-mypage-inner {
   max-width: 2560px;
   margin: 0 auto;
-  padding: 120px 120px 160px;
+  padding: 150px 10% 240px;
   position: relative;
 }
 
@@ -1172,32 +1182,32 @@
   display: inline-block;
   font-weight: 700;
   font-size: 14px;
-  color: #3d72ff;
+  color: #000000;
   margin-bottom: 10px;
 }
 .mypage-title {
   margin: 0 0 10px 0;
-  font-size: 42px;
-  font-weight: 700;
-  color: #1c1f24;
+  font-size: 2.8rem;
+  font-weight: 600;
+  color: #000000;
 }
 .mypage-desc {
   margin: 0;
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 1.7;
-  color: #4a4f56;
+  color: #717171;
 }
 
 /* 가운데 하이라이트 밴드 (스크린샷의 연한 블루 영역) */
 .mypage-band {
   position: absolute;
   left: 50%;
-  top: 44%;
+  top: 36%;
   transform: translateX(-50%);
-  width: 78%;
-  height: 42%;
+  width: 100%;
+  height: 34%;
   border-radius: 40px;
-  background: linear-gradient(180deg, rgba(194,219,255,0.28) 0%, rgba(233,241,255,0.36) 100%);
+  background: linear-gradient(90deg, #E8EFFF 0%, #F4F6FA 100%);
   filter: blur(0.2px); /* 살짝 부드럽게 */
   z-index: 0;
 }
@@ -1206,8 +1216,7 @@
 .mypage-row {
   position: relative;
   z-index: 1;
-  display: grid;
-  grid-template-columns: 0.9fr 1fr; /* 왼쪽 폰 / 오른쪽 텍스트 */
+  display: flex;
   align-items: center;
   column-gap: 80px;
   padding: 60px 0;
@@ -1215,16 +1224,29 @@
   & + .mypage-row { padding-top: 80px; }
 }
 
+/* 각 행(폰 + 텍스트) */
+.mypage-row2 {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  column-gap: 80px;
+  padding: 60px 40px;
+
+  & + .mypage-row { padding-top: 80px; }
+}
+
 /* 왼쪽 폰 */
 .mypage-phone img {
-  width: 420px; /* 필요시 380~460px로 조절 */
-  height: auto;
+  width: auto;
+  height: 720px;
   display: block;
   filter: drop-shadow(0 18px 50px rgba(0,0,0,0.18));
 }
 
 /* 오른쪽 텍스트 */
-.mypage-right { max-width: 720px; }
+.mypage-right { max-width: 65%; }
 .mypage-subpill {
   display: inline-block;
   font-size: 13px;
@@ -1232,36 +1254,36 @@
   margin-bottom: 8px;
 }
 .mypage-subtitle {
-  margin: 0 0 10px 0;
-  font-size: 26px;
-  font-weight: 700;
-  color: #1c1f24;
+  margin: 0 0 16px 0;
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: #000000;
 }
 .mypage-right-desc {
-  margin: 0 0 24px 0;
-  font-size: 15px;
-  line-height: 1.8;
-  color: #4a4f56;
+  font-size: 18px;
+    color: #3A3A3A;
+    margin-bottom: 10px;
 }
 
 /* 이미지 카드 그리드 */
 .mypage-cards {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 180px));
-  gap: 12px;
+  margin-top: 60px;
+  display: flex;
 }
 .mypage-card-img {
-  width: 100%;
+  width: 70%;
   height: auto;
   display: block;
-  border-radius: 12px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+  border-radius: 16px;
+}
+.mypage-img-col1{
+  margin-top: 120px;
 }
 
 /* 반응형 */
 @media (max-width: 1440px) {
   .service-mypage-inner { padding: 100px 80px 140px; }
-  .mypage-row { column-gap: 56px; }
+  .mypage-row { column-gap: 40px; }
   .mypage-phone img { width: 380px; }
   .mypage-band { width: 84%; height: 46%; }
 }
@@ -1275,3 +1297,5 @@
   .mypage-phone img { width: 340px; margin: 0 auto; }
   .mypage-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
+
+
