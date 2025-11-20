@@ -2,28 +2,16 @@
 
 /* GoalSection.scss
    이 파일은 'Goal' 섹션 전용 스타일입니다.
-   여기서만 수정하면 다른 섹션에 영향 거의 없음.
 */
 
 .goal-section-root {
-  /* ===== 높이 커스텀 포인트 =====
-     기본은 '한 화면 이상' 차지하도록 min-height:100vh 설정.
-     만약 정확히 한 화면만 쓰고 싶으면 height:100vh 추가해도 됨.
-  */
   min-height: var(--section-min-height, 100vh);
-
-  /* 상단 패딩: GNB(고정 네비)랑 겹치지 않게 여유 */
   padding-top: calc($gnb-height + 2rem);
   padding-bottom: 4rem;
-
-  /* 라이트 테마 배경 / 섹션 라인 */
-//   background-color: $color-bg-base;
-background-color: #041030;
+  background-color: #041030;
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-
-  /* 레이아웃 */
   display: flex;
-  align-items: flex-start; /* center로 바꾸면 수직 가운데 정렬 */
+  align-items: flex-start;
   box-sizing: border-box;
 }
 
@@ -49,7 +37,6 @@ background-color: #041030;
   color: $gray-700;
   font-size: 1.5rem;
   text-transform: uppercase;
-  text-align: center;
 }
 
 .goal-end {
@@ -68,74 +55,217 @@ background-color: #041030;
 }
 
 .goal-sub {
-    font-family: $font-family-display;
-    font-weight: 700;
-    line-height: 1.3;
-    letter-spacing: -0.03em;
-    font-size: 2.4rem;
-    text-align: center;
-    color: #ffffff;
+  font-family: $font-family-display;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.03em;
+  font-size: 2.4rem;
+  text-align: center;
+  color: #ffffff;
 
-    padding-top: 8rem;
+  padding-top: 8rem;
 
-    z-index: 6;
+  z-index: 6;
 }
 
 .goal-bg-text {
-    font-family: $font-family-display;
-    font-weight: 700;
-    line-height: 1.3;
-    letter-spacing: -0.03em;
-    font-size: 32em;
-    text-align: center;
-  
-    margin-top: -15rem;
-    z-index: 5;
-  
-    /* 페이드 아웃 (위→불투명 / 아래→투명) */
-    background: linear-gradient(to bottom, #ffffff20 0%, rgba(255,255,255,0) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
+  font-family: $font-family-display;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.03em;
+  font-size: 32em;
+  text-align: center;
 
-  .goal-left-block {
-    width: 100%;
-    text-align: left;      /* ← 여기서 전체를 왼쪽 정렬 */
-    margin-top: 6rem;
-    align-self: flex-start; /* 부모가 align-items: center 여서 필요 */
-    margin-left: calc(-1 * $page-padding-x - 4rem); /* 원하는 만큼 추가 조절 */
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
+  margin-top: -15rem;
+  z-index: 5;
+
+  background: linear-gradient(to bottom, #ffffff20 0%, rgba(255, 255, 255, 0) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
-  
-  .p-map-title {
-    color: $color-primary-main;
-    font-family: $font-family-display;
-    font-weight: 600;
-    line-height: 1.2;
-    letter-spacing: -0.03em;
-    font-size: 1.8rem;
-    text-transform: uppercase;
-    text-align: left;      /* ← center 말고 left로! */
+
+.goal-left-block {
+  width: 100%;
+  text-align: left;
+  margin-top: 6rem;
+  align-self: flex-start;
+  margin-left: calc(-1 * $page-padding-x - 4rem);
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.p-map-title {
+  color: $color-primary-main;
+  font-family: $font-family-display;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  text-align: left;
+}
+
+.p-map-sub {
+  font-family: $font-family-display;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.03em;
+  font-size: 3.5rem;
+  text-align: left;
+  color: #ffffff;
+}
+
+.p-map-desc {
+  max-width: 60ch;
+  font-family: $font-family-base;
+  font-size: 1.8rem;
+  font-weight: 500;
+  line-height: 1.6;
+  letter-spacing: -0.03em;
+  color: rgba(255, 255, 255, 0.616);
+  text-align: left;
+}
+
+/* =========================================
+   포지셔닝 맵 + 분석 이미지 그리드
+========================================= */
+.bg-map {
+  transform: scale(1.1);
+  transform-origin: top left;
+
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: 2.4fr 1.4fr;
+  grid-template-rows: auto auto;
+  gap: 1.5rem;
+}
+
+/* 포지셔닝 맵 래퍼 */
+.bg-main-wrap {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* 공통 이미지 */
+.bg-map .bg-position {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+/* 오른쪽 카드 두 개 */
+.bg-map > img:nth-of-type(1) {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.bg-map > img:nth-of-type(2) {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+/* =========================================
+   오버레이 이미지 (arrow + qpid + Our Goal)
+========================================= */
+
+/* ----- Arrow (화살표) ----- */
+.bg-overlay-arrow {
+  position: absolute;
+  top: 40%;    /* ← 네가 직접 맞춰놓은 위치 */
+  left: 35%;
+  width: 20%;
+
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+  transition-delay: 0s;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.bg-overlay-arrow.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ----- QPID + Our Goal 묶음 ----- */
+.bg-overlay-qpid-wrap {
+  position: absolute;
+  top: 20%;
+  left: 52%;
+  width: 20%;
+
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+  transition-delay: 0.3s;
+
+  pointer-events: none;
+  z-index: 10;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* qpid + 텍스트 등장 */
+.bg-overlay-qpid-wrap.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* qpid 이미지 */
+.bg-overlay-qpid {
+  width: 100%;
+  height: auto;
+}
+
+/* Our Goal 텍스트 */
+.bg-overlay-qpid-text {
+  margin-top: -2rem;
+  font-family: $font-family-display;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+  opacity: 0.9;
+}
+
+/* =========================================
+   반응형
+========================================= */
+@media (max-width: 768px) {
+  .goal-left-block {
+    margin-left: 0;
   }
 
-  .p-map-sub {
-    font-family: $font-family-display;
-    font-weight: 600;
-    line-height: 1.3;
-    letter-spacing: -0.03em;
-    font-size: 3.5rem;
-    text-align: left;
-    color: #ffffff;
+  .bg-map {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    transform: scale(1);
   }
-  .p-map-desc {
-    max-width: 60ch;
-    font-family: $font-family-base;
-    font-size: 1.8rem;
-    font-weight: 500;
-    line-height: 1.6;
-    letter-spacing: -0.03em;
-    color: rgba(255, 255, 255, 0.616);
-    text-align: left;
+
+  .bg-main-wrap {
+    grid-column: 1;
+    grid-row: auto;
   }
+
+  .bg-map > img:nth-of-type(1),
+  .bg-map > img:nth-of-type(2) {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .bg-overlay-arrow {
+    width: 30%;
+  }
+
+  .bg-overlay-qpid-wrap {
+    width: 30%;
+  }
+}

@@ -15,7 +15,7 @@
 }
 
 .persona-section-inner {
-    width: 100%;
+  width: 100%;
   max-width: $page-max-width;
   margin: 0 auto;
   padding: 0 $page-padding-x;
@@ -26,23 +26,19 @@
   gap: 1rem;
   align-items: center;
   text-align: center;
-
- // --persona-offset: calc(-1 * $page-padding-x - 4rem);
 }
 
-/* ───────────────────────────────────────────── */
-/* 상단 텍스트 블록 */
-/* ───────────────────────────────────────────── */
+/* 상단 텍스트 */
 
 .persona-left-block {
-    width: 100%;
-    text-align: left;      /* ← 여기서 전체를 왼쪽 정렬 */
-    margin-top: 6rem;
-    align-self: flex-start; /* 부모가 align-items: center 여서 필요 */
-    margin-left: calc(-1 * $page-padding-x - 4rem); /* 원하는 만큼 추가 조절 */
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
+  width: 100%;
+  text-align: left;
+  margin-top: 6rem;
+  align-self: flex-start;
+  margin-left: calc(-1 * $page-padding-x - 4rem);
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
 }
 
 .persona-title {
@@ -54,70 +50,229 @@
   text-transform: uppercase;
 }
 
-// 교수 학생 페르소나
+/* ============================================================
+   페르소나 이미지 & 유저 저니맵 이미지
+============================================================ */
 
-.persona_avatars {
-    
+.persona_avatars,
+.persona_journeymap {
+  width: 92%;
+  height: auto;
+  display: block;
+
+  margin: 10rem auto;
+
+  transform: scale(1.25);
+  transform-origin: center;
 }
 
+@media (max-width: 768px) {
+  .persona_avatars,
+  .persona_journeymap {
+    margin: 3rem 0;
+    transform: scale(1);
+  }
+}
+
+/* ============================================================
+   Persona Text & KEY SERVICE 타이틀
+============================================================ */
+
 .persona-end {
-    display: flex;
-    flex-direction: column;
-    gap: 1.2rem;
-    margin: 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin: 4rem;
+}
+
+.persona-sub {
+  font-family: $font-family-display;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: -0.03em;
+  font-size: 2.4rem;
+  text-align: center;
+  color: #ffffff;
+  padding-top: 2rem;
+  z-index: 6;
+}
+
+.persona-span {
+  font-weight: 700;
+}
+
+.key-top-block {
+  width: 100%;
+  margin-top: 20rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.key-title {
+  color: #fff;
+  font-family: $font-family-display;
+  font-weight: 600;
+  font-size: 1.6rem;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+}
+
+.key-sub {
+  font-family: $font-family-display;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: -0.03em;
+  font-size: 2.4rem;
+  text-align: center;
+  color: #ffffff;
+  padding-top: 2rem;
+  z-index: 6;
+}
+
+.key-span {
+  font-weight: 700;
+  background-color: $color-primary-main;
+}
+
+/* ============================================================
+   KEY SERVICE 2x2 GRID – 텍스트 + 비주얼 레이아웃
+============================================================ */
+
+.service-grid-section {
+  width: 100%;
+  margin-top: 8rem;
+}
+
+.service-grid {
+  width: 100%;
+  border-radius: 2rem;
+  overflow: hidden;
+  background: #000;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-rows: minmax(22rem, 26rem);
+
+  @media (max-width: 960px) {
+    grid-template-columns: 1fr;
+    border-radius: 1.5rem;
   }
-  
-  .persona-sub {
-    font-family: $font-family-display;
-    font-weight: 400;
-    line-height: 1.3;
-    letter-spacing: -0.03em;
-    font-size: 2.4rem;
-    text-align: center;
-    color: #ffffff;
+}
 
-    padding-top: 2rem;
+.service-panel {
+  position: relative;
+  box-sizing: border-box;
+  background: #000;
+  padding: 3.5rem 4.5rem;
 
-    z-index: 6;
+  border-right: 1px solid rgba(148, 163, 184, 0.18);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+
+  &:nth-child(2),
+  &:nth-child(4) {
+    border-right: none;
   }
 
-  .persona-span {
-    font-weight: 700;
+  @media (max-width: 960px) {
+    padding: 2.5rem 1.8rem;
+    border-right: none;
   }
+}
 
-  .key-top-block {
-    width: 100%;
-    margin-top: 20rem;
-  //   margin-left: calc(-1 * $page-padding-x - 4rem);
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
+/* 카드 안 레이아웃:
+   - 위: pill + 제목
+   - 아래: 비주얼 (항상 카드 좌측 하단) */
+
+.service-panel-inner {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;      /* 좌측 정렬 */
+  justify-content: space-between; /* 위/아래로 양끝 배치 → body가 항상 카드 하단 */
+}
+
+/* pill + 타이틀 공통 */
+
+.service-panel-header {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.6rem;
+}
+
+.service-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.45rem 1.6rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  font-size: 0.95rem;
+  letter-spacing: -0.03em;
+}
+
+.service-panel-title {
+  font-family: $font-family-display;
+  font-weight: 600;
+  font-size: 2.4rem;
+  line-height: 1.3;
+  letter-spacing: -0.03em;
+  color: #fff;
+
+  @media (max-width: 960px) {
+    font-size: 1.8rem;
   }
+}
 
-  .key-title {
-    color: #fff;
-    font-family: $font-family-display;
-    font-weight: 600;
-    font-size: 1.6rem;
-    letter-spacing: -0.03em;
-    text-transform: uppercase;
+/* 아래 비주얼 영역: 카드의 "좌측 하단"에 붙게 되는 부분 */
+
+.service-panel-body {
+  width: 100%;
+  position: relative;
+  /* flex가 space-between 이라 이 body 블록 자체가
+     카드의 하단에 위치하게 됨 */
+}
+
+/* 실제 비주얼 박스: 좌측 하단 고정 느낌으로 보이도록 사이즈 조정 */
+
+.service-visual {
+  /* 좌측 정렬 */
+  align-self: flex-start;
+
+  /* 비주얼 기본 크기 (반응형) */
+  width: clamp(10rem, 40%, 18rem);
+  height: clamp(6rem, 30%, 10rem);
+  border-radius: 1.5rem;
+
+  background: rgba(15, 23, 42, 0.9); /* 기본 틀만 살짝 보이게 */
+}
+
+/* 패널별로 나중에 스타일 다르게 */
+
+.service-visual--home {
+  background: linear-gradient(135deg, #1d4ed8, #38bdf8);
+}
+
+.service-visual--community {
+  background: radial-gradient(circle at top left, #111827, #020617);
+}
+
+.service-visual--chat {
+  background: linear-gradient(135deg, #0f172a, #2563eb);
+}
+
+.service-visual--mypage {
+  background: linear-gradient(135deg, #020617, #4b5563);
+}
+
+@media (max-width: 960px) {
+  .service-visual {
+    width: clamp(9rem, 60%, 16rem);
+    height: clamp(5rem, 28%, 9rem);
   }
-
-  .key-sub {
-    font-family: $font-family-display;
-    font-weight: 400;
-    line-height: 1.3;
-    letter-spacing: -0.03em;
-    font-size: 2.4rem;
-    text-align: center;
-    color: #ffffff;
-
-    padding-top: 2rem;
-
-    z-index: 6;
-  }
-
-  .key-span {
-    font-weight: 700;
-    background-color: $color-primary-main;
-  }
+}

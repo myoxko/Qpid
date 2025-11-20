@@ -78,6 +78,7 @@ export default function InsightSection() {
 
   const researchSectionRef = useRef(null);
 
+  // 스크롤로 들어올 때마다 애니메이션 다시 재생
   useEffect(() => {
     const section = researchSectionRef.current;
     if (!section) return;
@@ -85,10 +86,8 @@ export default function InsightSection() {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          // 화면 안으로 들어올 때 애니메이션 시작
           section.classList.add("is-visible");
         } else {
-          // 화면 밖으로 나가면 애니메이션 리셋
           section.classList.remove("is-visible");
         }
       },
@@ -102,7 +101,7 @@ export default function InsightSection() {
   return (
     <div className="insight-section-root">
       <div className="insight-section-inner">
-        {/* 인터뷰 인사이트 섹션 */}
+        {/* IN DEPTH INTERVIEW 섹션 */}
         <div className="insight-left-block">
           <h2 className="interview-title">IN DEPTH INTERVIEW</h2>
           <p className="interview-sub">
@@ -112,7 +111,7 @@ export default function InsightSection() {
         </div>
 
         <div className="insight-summary-and-quotes">
-          {/* 왼쪽 - 교수 측 */}
+          {/* 왼쪽 - 교수 */}
           <div className="insight-column insight-column-left">
             <p className="insight-summary">
               대학교 강의 및 학생 커뮤니티 운영중인 교수 36명을 인터뷰하여
@@ -140,7 +139,7 @@ export default function InsightSection() {
           {/* 가운데 세로 라인 */}
           <div className="insight-divider" />
 
-          {/* 오른쪽 - 학생 측 */}
+          {/* 오른쪽 - 학생 */}
           <div className="insight-column insight-column-right">
             <p className="insight-summary">
               대학생 및 대학원생 83명을 대상으로 교수와의 소통 경험과 참여
@@ -171,6 +170,7 @@ export default function InsightSection() {
           className="research-insights-section"
           ref={researchSectionRef}
         >
+          {/* 상단: 텍스트 + 비행기 */}
           <div className="research-top-row">
             <div className="research-text-block">
               <span className="research-label">RESEARCH INSIGHTS</span>
@@ -181,19 +181,21 @@ export default function InsightSection() {
             </div>
 
             <div className="research-plane-block">
+              {/* 점선 경로 */}
               <svg
                 className="research-plane-path"
-                viewBox="0 0 600 220"
+                viewBox="0 0 1200 400"
                 preserveAspectRatio="none"
               >
                 <path
-                  d="M 0 160 Q 180 80 300 120 T 600 60"
+                  d="M 0 320 Q 350 200 650 260 T 1200 170"
                   fill="none"
                   stroke="#2E6BFF"
                   strokeWidth="3"
-                  strokeDasharray="6 8"
+                  strokeDasharray="6 12"
                 />
               </svg>
+              {/* 종이비행기 */}
               <img
                 src={paperPlane}
                 alt="paper plane"
@@ -202,38 +204,41 @@ export default function InsightSection() {
             </div>
           </div>
 
-          <div className="research-cards-row">
-            {researchCards.map((card) => (
-              <div key={card.id} className="research-card">
-                <div className="research-card-top">
-                  <span className="research-card-id">{card.id}</span>
+          {/* 아래: 카드 3개 + 결과 텍스트 (좌/우) */}
+          <div className="research-main-row">
+            <div className="research-cards-row">
+              {researchCards.map((card) => (
+                <div key={card.id} className="research-card">
+                  <div className="research-card-top">
+                    <span className="research-card-id">{card.id}</span>
+                  </div>
+                  <div className="research-card-icon-wrap">
+                    <img
+                      src={whiteCircle}
+                      alt=""
+                      className="research-card-circle"
+                    />
+                    <img
+                      src={card.icon}
+                      alt={card.title}
+                      className="research-card-flower"
+                    />
+                  </div>
+                  <p className="research-card-title">{card.title}</p>
                 </div>
-                <div className="research-card-icon-wrap">
-                  <img
-                    src={whiteCircle}
-                    alt=""
-                    className="research-card-circle"
-                  />
-                  <img
-                    src={card.icon}
-                    alt={card.title}
-                    className="research-card-flower"
-                  />
-                </div>
-                <p className="research-card-title">{card.title}</p>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
 
-          <div className="research-result-block">
-            <span className="research-result-pill">결과</span>
-            <p className="research-result-text">
-              학생과 교수의 지식 커뮤니케이션을 최적화하여{" "}
-              <span className="research-result-highlight">
-                지식 소통의 더 커진 세상
-              </span>
-              을 열어줍니다.
-            </p>
+            <div className="research-result-block">
+              <span className="research-result-pill">결과</span>
+              <p className="research-result-text">
+                학생과 교수의 지식 커뮤니케이션을 최적화하여{" "}
+                <span className="research-result-highlight">
+                  지식 소통의 더 커진 세상
+                </span>
+                을 열어줍니다.
+              </p>
+            </div>
           </div>
         </section>
       </div>
