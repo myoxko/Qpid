@@ -1,5 +1,6 @@
 import React from 'react';
 import '../styles/sections/ServiceSection.scss';
+import Reveal from '../components/animations/Reveal.jsx';
 
 import PhoneMain from '../assets/images_jm/serviceSectionMain.png';
 import BGflower1 from '../assets/images_jm/serviceSectionBG1.png';
@@ -7,7 +8,7 @@ import BGflower2 from '../assets/images_jm/serviceSectionBG2.png';
 import BGflower3 from '../assets/images_jm/serviceSectionBG3.png';
 
 /* ⬇️ 온보딩 4장 반드시 import */
-import Onb1 from '../assets/images_jm/onboarding_1.png';
+import Onb1Video from '../assets/videos_jm/onboarding_1.mp4';
 import Onb2 from '../assets/images_jm/onboarding_2.png';
 import Onb3 from '../assets/images_jm/onboarding_3.png';
 import Onb4 from '../assets/images_jm/onboarding_4.png';
@@ -72,11 +73,11 @@ export default function ServiceSection() {
           />
         </div>
 
-        <h2 className="service-title">
+        <Reveal as="h2" type="up" delay={0.12} className="service-title">
           지금부터 <span className="accent">큐피드</span>와 함께
           <br />
           지식의 폭을 넓혀볼까요?
-        </h2>
+        </Reveal>
 
         <div className="mockup-wrap">
           <div
@@ -122,14 +123,34 @@ export default function ServiceSection() {
                 <img src={RibbonPNG} alt="장식용 리본" />
               </div>
 
-              <img src={Onb1} alt="온보딩" className="onboarding-phone" />
-              <img src={Onb2} alt="로그인 화면" className="onboarding-phone" />
-              <img
-                src={Onb3}
-                alt="회원가입 화면"
-                className="onboarding-phone"
+              <video
+                className="onboarding-phone-video"
+                src={Onb1Video}
+                muted
+                playsInline
+                controls={false}
+                autoPlay
+                loop
               />
-              <img src={Onb4} alt="시작 화면" className="onboarding-phone" />
+
+              {/* 오른쪽에서 차례로 리빌 */}
+              <Reveal type="right" delay={0.5}>
+                <img
+                  src={Onb2}
+                  alt="로그인 화면"
+                  className="onboarding-phone"
+                />
+              </Reveal>
+              <Reveal type="right" delay={1}>
+                <img
+                  src={Onb3}
+                  alt="회원가입 화면"
+                  className="onboarding-phone"
+                />
+              </Reveal>
+              <Reveal type="right" delay={1.5}>
+                <img src={Onb4} alt="시작 화면" className="onboarding-phone" />
+              </Reveal>
             </div>
           </div>
         </section>
@@ -178,14 +199,19 @@ export default function ServiceSection() {
                 </p>
 
                 <div className="service-home-phones-inline">
-                  <div
-                    className="service-home-phone"
-                    style={{ backgroundImage: `url(${Home01})` }}
-                  />
-                  <div
-                    className="service-home-phone"
-                    style={{ backgroundImage: `url(${Home02})` }}
-                  />
+                  <Reveal type="right" delay={0.5}>
+                    <div
+                      className="service-home-phone"
+                      style={{ backgroundImage: `url(${Home01})` }}
+                    />
+                  </Reveal>
+
+                  <Reveal type="right" delay={1}>
+                    <div
+                      className="service-home-phone"
+                      style={{ backgroundImage: `url(${Home02})` }}
+                    />
+                  </Reveal>
                 </div>
 
                 <div className="service-home-captions">
@@ -204,13 +230,15 @@ export default function ServiceSection() {
             <div className="service-flow">
               {/* 위: 단일 폰 + 말풍선 */}
               <div className="flow-top">
-                <div className="flow-top-phone">
-                  <img
-                    src={FlowTop}
-                    alt="질문 확인 화면"
-                    className="flow-phone flow-phone--large"
-                  />
-                </div>
+                <Reveal type="right" delay={0.1}>
+                  <div className="flow-top-phone">
+                    <img
+                      src={FlowTop}
+                      alt="질문 확인 화면"
+                      className="flow-phone flow-phone--large"
+                    />
+                  </div>
+                </Reveal>
 
                 <div className="flow-callout">
                   작성한 내용을 다시 한 번 확인해주세요.
@@ -219,19 +247,22 @@ export default function ServiceSection() {
                   <br />더 정확한 매칭이 이루어집니다.
                 </div>
               </div>
+
               {/* 구분 점선 */}
               <div className="flow-sep" />
 
               {/* 아래: 3개 폰 + 점선 라인 + 캡션 */}
               <div className="flow-bottom">
                 <div className="flow-item">
-                  <div className="flow-phone-wrap">
-                    <img
-                      src={Flow04}
-                      alt="AI가 적합한 교수님 탐색"
-                      className="flow-phone"
-                    />
-                  </div>
+                  <Reveal type="right" delay={0.5}>
+                    <div className="flow-phone-wrap">
+                      <img
+                        src={Flow04}
+                        alt="AI가 적합한 교수님 탐색"
+                        className="flow-phone"
+                      />
+                    </div>
+                  </Reveal>
                   <p className="flow-cap">
                     AI가 질문을 분석하고 가장 잘 맞는
                     <br />
@@ -240,9 +271,15 @@ export default function ServiceSection() {
                 </div>
 
                 <div className="flow-item">
-                  <div className="flow-phone-wrap">
-                    <img src={Flow05} alt="교수 선택" className="flow-phone" />
-                  </div>
+                  <Reveal type="right" delay={1}>
+                    <div className="flow-phone-wrap">
+                      <img
+                        src={Flow05}
+                        alt="교수 선택"
+                        className="flow-phone"
+                      />
+                    </div>
+                  </Reveal>
                   <p className="flow-cap">
                     추천된 교수님의 프로필과 평점을 보고
                     <br />
@@ -251,13 +288,15 @@ export default function ServiceSection() {
                 </div>
 
                 <div className="flow-item">
-                  <div className="flow-phone-wrap">
-                    <img
-                      src={Flow06}
-                      alt="질문 전송 완료"
-                      className="flow-phone"
-                    />
-                  </div>
+                  <Reveal type="right" delay={1.5}>
+                    <div className="flow-phone-wrap">
+                      <img
+                        src={Flow06}
+                        alt="질문 전송 완료"
+                        className="flow-phone"
+                      />
+                    </div>
+                  </Reveal>
                   <p className="flow-cap">
                     질문이 전송되었습니다. 교수님의
                     <br />
@@ -265,8 +304,10 @@ export default function ServiceSection() {
                   </p>
                 </div>
               </div>
+
               <div className="flow-sep2" />
             </div>
+
             {/* ===== /흐름 플로우 ===== */}
           </div>
         </section>
@@ -305,12 +346,17 @@ export default function ServiceSection() {
               </div>
 
               <div className="prof-right-phones">
-                <img
-                  src={ProfList}
-                  alt="받은 질문 목록"
-                  className="prof-phone"
-                />
-                <img src={ProfChat} alt="채팅 화면" className="prof-phone" />
+                <Reveal type="right" delay={0.5}>
+                  <img
+                    src={ProfList}
+                    alt="받은 질문 목록"
+                    className="prof-phone"
+                  />
+                </Reveal>
+
+                <Reveal type="right" delay={1}>
+                  <img src={ProfChat} alt="채팅 화면" className="prof-phone" />
+                </Reveal>
               </div>
             </div>
           </div>
@@ -438,12 +484,9 @@ export default function ServiceSection() {
           </div>
           <div className="chat-bg-wrap">
             {/* 점선 곡선 배경 */}
-            <div
-              className="chat-curve"
-              style={{ backgroundImage: `url(${ChatCurve})` }}
-            />
+            <img src={ChatCurve} alt="점선" className="chat-curve" />
             {/* 종이비행기 이미지 (오른쪽 하단) */}
-            <img src={PaperPlane} alt="종이비행기" className="chat-plane" />
+            {/* <img src={PaperPlane} alt="종이비행기" className="chat-plane" /> */}
           </div>
         </section>
 
@@ -500,31 +543,32 @@ export default function ServiceSection() {
 
                 {/* 리스트 카드 → 이미지로 교체 */}
                 <div className="mypage-cards">
-                  <div className="mypage-img-col1">
-                    <img
-                    src={CardA}
-                    alt="내 활동 요약"
-                    className="mypage-card-img"
-                  />
-                  </div>
-                  <div className="mypage-img-col2">
-                    <img
-                    src={CardB}
-                    alt="질문 관리"
-                    className="mypage-card-img"
-                  />
-                  </div>
-                  
+                  <Reveal type="right" delay={0.05} duration={0.6}>
+                    <div className="mypage-img-col1">
+                      <img
+                        src={CardA}
+                        alt="내 활동 요약"
+                        className="mypage-card-img"
+                      />
+                    </div>
+                  </Reveal>
+
+                  <Reveal type="right" delay={0.18} duration={0.6}>
+                    <div className="mypage-img-col2">
+                      <img
+                        src={CardB}
+                        alt="질문 관리"
+                        className="mypage-card-img"
+                      />
+                    </div>
+                  </Reveal>
                 </div>
-              
               </div>
             </section>
 
             {/* ====== 블록 B: 교수 ====== */}
             <section className="mypage-row2 mypage-row--prof">
-              <div
-                className="mypage-phone"
-              >
+              <div className="mypage-phone">
                 <img src={MyPageProfessor} alt="마이페이지(교수)" />
               </div>
 
@@ -540,8 +584,6 @@ export default function ServiceSection() {
                   <br />
                   학생들과의 소통을 꾸준히 이어가보세요.
                 </p>
-
-                
               </div>
             </section>
           </div>

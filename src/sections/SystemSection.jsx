@@ -1,5 +1,6 @@
 import React from 'react';
 import '../styles/sections/SystemSection.scss';
+import Reveal from '../components/animations/Reveal.jsx';
 
 import ImgBlue from '../assets/images_jm/designSystemIMG1.png';
 import ImgDark from '../assets/images_jm/designSystemIMG2.png';
@@ -35,60 +36,66 @@ export default function SystemSection() {
           <div className="system-1-intro">
             <h2 className="system-title">DESIGN</h2>
             <p className="system-desc">
-            편지(Envelope) 메타포를 활용하여 메시지 교환과 피드백 과정을 
-            <br />
-            직관적이고 친근하게 표현했으며, 지나치게 형식적이지 않으면서도 
-            <br />
-            신뢰감과 전문성을 유지하도록 디자인했습니다.
+              편지(Envelope) 메타포를 활용하여 메시지 교환과 피드백 과정을
+              <br />
+              직관적이고 친근하게 표현했으며, 지나치게 형식적이지 않으면서도
+              <br />
+              신뢰감과 전문성을 유지하도록 디자인했습니다.
             </p>
           </div>
 
           {/* 2. 이미지 카드 영역 (가로 레이아웃) */}
           <div className="system-1-images">
             {/* 컬럼 1 */}
-            <div className="img-col img-col-1">
-              <div className="system-img-card">
-                <div
-                  className="card-image"
-                  style={{
-                    backgroundImage: `url(${ImgBlue})`,
-                  }}
-                />
-                <div className="card-caption">
-                  https://kr.pinterest.com/pin/211174977772549/
+            <Reveal type="left" delay={0.5}>
+              <div className="img-col img-col-1">
+                <div className="system-img-card">
+                  <div
+                    className="card-image"
+                    style={{
+                      backgroundImage: `url(${ImgBlue})`,
+                    }}
+                  />
+                  <div className="card-caption">
+                    https://kr.pinterest.com/pin/211174977772549/
+                  </div>
                 </div>
               </div>
-            </div>
+            </Reveal>
 
             {/* 컬럼 2 */}
-            <div className="img-col img-col-2">
-              <div className="system-img-card">
-                <div
-                  className="card-image"
-                  style={{
-                    backgroundImage: `url(${ImgDark})`,
-                  }}
-                />
-                <div className="card-caption">
-                  https://kr.pinterest.com/pin/211174977772549/
+            <Reveal type="left" delay={1}>
+              <div className="img-col img-col-2">
+                <div className="system-img-card">
+                  <div
+                    className="card-image"
+                    style={{
+                      backgroundImage: `url(${ImgDark})`,
+                    }}
+                  />
+                  <div className="card-caption">
+                    https://kr.pinterest.com/pin/211174977772549/
+                  </div>
                 </div>
               </div>
-            </div>
+            </Reveal>
 
             {/* 컬럼 3 */}
-            <div className="img-col img-col-3">
-              <div className="system-img-card">
-                <div
-                  className="card-image"
-                  style={{
-                    backgroundImage: `url(${ImgNote})`,
-                  }}
-                />
-                <div className="card-caption">
-                  https://kr.pinterest.com/pin/211174977772549/
+            <Reveal type="left" delay={1.5}>
+              <div className="img-col img-col-3">
+                <div className="system-img-card">
+                  <div
+                    className="card-image"
+                    style={{
+                      backgroundImage: `url(${ImgNote})`,
+                    }}
+                  />
+                  <div className="card-caption">
+                    https://kr.pinterest.com/pin/211174977772549/
+                  </div>
                 </div>
               </div>
-            </div>
+            </Reveal>
           </div>
         </div>
 
@@ -108,15 +115,19 @@ export default function SystemSection() {
               </div>
 
               <p className="system-desc">
-              큐피드의 비주얼 시스템은 차가운 지식과 따뜻한 감정이 만나는 지점을 표현합니다.
-              <br />
-              이 조화는 서비스가 지향하는 본질을 담고 있으며, 선명한 블루와 따뜻한 오렌지, 
-              <br /> 
-              그리고 신뢰감 있는 타이포그래피를 통해 지식과 감정이 공존하는 대화의 공간을 시각화합니다. 
-              <br />
-              여기에 네온 그린을 교수와 학생을 연결하는 ‘연결의 색’으로 활용하여, 
-              <br />
-              지식의 흐름과 상호작용을 상징적으로 표현했습니다.
+                큐피드의 비주얼 시스템은 차가운 지식과 따뜻한 감정이 만나는
+                지점을 표현합니다.
+                <br />
+                이 조화는 서비스가 지향하는 본질을 담고 있으며, 선명한 블루와
+                따뜻한 오렌지,
+                <br />
+                그리고 신뢰감 있는 타이포그래피를 통해 지식과 감정이 공존하는
+                대화의 공간을 시각화합니다.
+                <br />
+                여기에 네온 그린을 교수와 학생을 연결하는 ‘연결의 색’으로
+                활용하여,
+                <br />
+                지식의 흐름과 상호작용을 상징적으로 표현했습니다.
               </p>
             </div>
           </div>
@@ -174,7 +185,6 @@ export default function SystemSection() {
             <div className="system-right-col">
               <div className="typography-block">
                 <h3 className="block-title">Typography</h3>
-
                 <div className="type-family">
                   <p className="type-font-name">
                     Pretendard
@@ -182,7 +192,6 @@ export default function SystemSection() {
                     <span className="type-font-name">프리텐다드</span>
                   </p>
                 </div>
-
                 <ul className="type-scale-list">
                   <li className="type-row">
                     <span className="type-label">Heading 1</span>
@@ -239,7 +248,7 @@ export default function SystemSection() {
         />
       </div>
       <div className="system-section-logo2">
-      <div
+        <div
           className="system-section-logo-image2"
           style={{
             backgroundImage: `url(${LogoMark2})`,
@@ -247,7 +256,7 @@ export default function SystemSection() {
         />
       </div>
       <div className="system-section-mockup">
-      <div
+        <div
           className="system-section-mockup-img"
           style={{
             backgroundImage: `url(${Mockup})`,
