@@ -181,19 +181,23 @@
 .research-insights-section {
   width: 100%;
   margin-top: 12rem;
+
+  position: relative;   
+  overflow: visible;
 }
 
 /* 상단: 텍스트 + 비행기 */
 
 .research-top-row {
+  position: relative;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   gap: 3rem;
+  z-index: 2;           
 }
 
 .research-text-block {
-  // max-width: 560px;
   width: 100%;
   margin-top: 6rem;
   margin-left: calc(-1 * $page-padding-x - 4rem);
@@ -224,33 +228,36 @@
 
 .research-plane-block {
   position: relative;
-  flex: 1;
-  min-height: 260px;
+  flex: 0 0 45%;
+  min-width: 460px;
+  min-height: 320px;
+  overflow: visible;
 }
 
+
 .research-plane-path {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
 }
 
 /* 점선 + 그려지는 효과 */
 .research-plane-path path {
-  /* 점선 모양 */
-  stroke-dasharray: 8 10;
-  /* 시작 시 화면 밖 쪽에 숨겨두기 */
-  stroke-dashoffset: 400;
+  /* SVG에서 준 dasharray 패턴(6 12)은 유지하고
+     여기선 애니메이션용 offset만 조절 */
+  stroke-dashoffset: 300;
 }
 
-/* 비행기 이미지 */
+/* 종이비행기 이미지 */
 .research-paper-plane {
   position: absolute;
-  width: 220px;  /* 기존보다 크게 */
+  width: 280px;
   height: auto;
-  top: 0;
-  left: 0;      /* 기준을 왼쪽 위로 */
+  top: 40px;
+  right: 120px;
 
-  /* 곡선 경로 (현재 화면에서 보이는 모양 유지) */
-  offset-path: path("M 40 200 Q 220 140 360 160 T 560 90");
+  offset-path: path("M 0 320 Q 350 200 650 260 T 1200 170");
   offset-distance: 0%;
   offset-rotate: auto;
 }
@@ -266,30 +273,24 @@
 }
 
 @keyframes research-draw-path {
-  from {
-    stroke-dashoffset: 400;
-  }
-  to {
-    stroke-dashoffset: 0;
-  }
+  from { stroke-dashoffset: 300; }
+  to   { stroke-dashoffset: 0; }
 }
 
 @keyframes research-plane-along {
-  from {
-    offset-distance: 0%;
-  }
-  to {
-    offset-distance: 100%;
-  }
+  from { offset-distance: 0%; }
+  to   { offset-distance: 100%; }
 }
 
-/* 카드 + 결과를 한 줄에 (좌: 카드, 우: 결과) */
+/* 아래: 카드 3개 + 결과 텍스트 (좌/우) */
 
 .research-main-row {
-  margin-top: 4rem;
+  margin-top: 5.5rem;
   display: flex;
   align-items: flex-start;
-  gap: 3rem;
+  gap: 3.2rem;
+  position: relative;
+  z-index: 2;
 }
 
 /* 카드 3개 */
@@ -297,6 +298,10 @@
 .research-cards-row {
   display: flex;
   gap: 1.8rem;
+
+  width: 100%;
+  margin-left: calc(-1 * $page-padding-x - 4rem);
+  gap: 3rem;
 }
 
 .research-card {
@@ -309,8 +314,6 @@
   display: flex;
   flex-direction: column;
   gap: 1.8rem;
-
-  min-height: 320px; /* 카드 상하 길게 */
 }
 
 .research-card-top {
@@ -341,18 +344,7 @@
   width: 38px;
   height: 38px;
 
-  /* 기본 회전 */
-  animation: flower-spin 8s linear infinite;
-}
-
-/* 카드마다 회전 속도/방향 다르게 */
-.research-card:nth-child(2) .research-card-flower {
-  animation-duration: 10s;
-}
-
-.research-card:nth-child(3) .research-card-flower {
-  animation-duration: 12s;
-  animation-direction: reverse;
+  animation: flower-spin 2s linear infinite;
 }
 
 @keyframes flower-spin {
@@ -361,7 +353,7 @@
 }
 
 .research-card-title {
-  margin-top: auto;
+  margin-top: 0px;
   font-family: $font-family-display;
   font-size: 1.4rem;
   font-weight: 600;
@@ -374,92 +366,112 @@
   align-self: stretch;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  padding-bottom: 1rem;
+
+  justify-content: end;
 }
 
 .research-result-pill {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.3rem 0.9rem;
-  border-radius: 999px;
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  font-size: 0.9rem;
+  font-size: 10rem;
+
+  width: auto;
+  align-self: flex-start;
+
+  padding: 1rem 4rem;   // 좌우 여백 줄임
+  border-radius: 20px;
+  border: 2px solid rgba(0, 0, 0, 0.16);
+
+  font-size: 1rem;
   font-weight: 500;
-  margin-bottom: 1rem;
+  background: #fff;
+  color: #333;
 }
 
 .research-result-text {
   font-family: $font-family-base;
-  font-size: 1.1rem;
+  font-size: 3rem;
   line-height: 1.7;
+  font-weight: 500;
   color: #111;
+  width: 500px;
+
+  justify-items: bottom;
 }
 
 .research-result-highlight {
   color: $color-primary-main;
-  font-weight: 600;
+  font-weight: 700;
+  background-color: #DAEAFF;
 }
 
 /* ───────────────────────────────────────────── */
-/* 반응형 */
+/* 1920px 이상 (예: 2560×1440)일 때
+   파란 카드 + 결과 + 종이비행기만 크게 보이게 */
 /* ───────────────────────────────────────────── */
 
-@media (max-width: 1024px) {
-  .insight-summary-and-quotes {
-    flex-direction: column;
-    gap: 3rem;
-  }
-
-  .insight-divider {
-    display: none;
-  }
-
-  .research-top-row {
-    flex-direction: column;
-  }
-
-  .research-plane-block {
-    width: 100%;
-  }
-
+@media (min-width: 1920px) {
+  /* 파란 카드 3개 레이아웃 & 사이즈 업 */
   .research-main-row {
-    flex-direction: column;
-    gap: 3rem;
+    gap: 4rem; /* 카드와 결과 사이 여유 */
   }
 
   .research-cards-row {
-    flex-wrap: wrap;
+    gap: 2rem;
   }
 
+  .research-card {
+    flex: 0 0 320px;          /* 가로 폭 조금 넓게 */
+    min-height: 540px;        /* 세로 확실히 길게 */
+    padding: 2.4rem 2.4rem 2.8rem;
+  }
+
+  .research-card-icon-wrap {
+    width: 92px;
+    height: 92px;
+
+    margin-top: 8rem;
+  }
+
+  .research-card-flower {
+    width: 50px;
+    height: 50px;
+  }
+
+  .research-card-title {
+    font-size: 1.9rem;        /* 카드 안 타이틀 크게 */
+  }
+
+  /* 결과 블록도 비율 맞게 키우기 */
   .research-result-block {
-    margin-top: 0;
-  }
-}
-
-@media (max-width: 768px) {
-  .insight-section-inner {
-    --insight-offset: 0;
+    max-width: 440px;
   }
 
-  .insight-left-block {
-    margin-left: 0;
+  .research-result-pill {
+    font-size: 1rem;
   }
 
-  .insight-summary-and-quotes {
-    margin-left: 0;
-    width: 100%;
+  .research-result-text {
+    font-size: 2rem;
+    line-height: 1.85;
   }
 
-  .insight-card-list {
-    grid-template-columns: 1fr;
+  /* 종이비행기/점선 영역 크게 + 화면 안쪽으로 */
+  .research-plane-block {
+    flex: 0 0 52%;
+    min-width: 700px;
+    min-height: 420px;
   }
 
-  .interview-sub {
-    font-size: 2.4rem;
+  .research-plane-path {
+    inset: 0;
   }
 
-  .research-cards-row {
-    flex-direction: column;
+  .research-paper-plane {
+    width: 360px;        
+    top: 40px;           
+    right: 200px;        
   }
 }

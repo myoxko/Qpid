@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState, useCallback } from "react";
+import "./styles/app.scss";
 
 import HeaderNav from "./components/HeaderNav.jsx";
 
