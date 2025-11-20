@@ -170,7 +170,7 @@ export default function InsightSection() {
           className="research-insights-section"
           ref={researchSectionRef}
         >
-          {/* 상단: 텍스트 + 비행기 */}
+          {/* 상단: 텍스트만 */}
           <div className="research-top-row">
             <div className="research-text-block">
               <span className="research-label">RESEARCH INSIGHTS</span>
@@ -179,29 +179,29 @@ export default function InsightSection() {
                 구체적인 인사이트를 발견했어요
               </h2>
             </div>
+          </div>
 
-            <div className="research-plane-block">
-              {/* 점선 경로 */}
-              <svg
-                className="research-plane-path"
-                viewBox="0 0 1200 400"
-                preserveAspectRatio="none"
-              >
-                <path
-                  d="M 220 330 Q 460 260 720 220 T 1120 90"
-                  fill="none"
-                  stroke="#2E6BFF"
-                  strokeWidth="3"
-                  strokeDasharray="6 12"
-                />
-              </svg>
-              {/* 종이비행기 */}
-              <img
-                src={paperPlane}
-                alt="paper plane"
-                className="research-paper-plane"
+          {/* 섹션 전체를 가로지르는 비행기 레이어 */}
+          <div className="research-plane-layer">
+            <svg
+              className="research-plane-path"
+              viewBox="0 0 1440 360"
+              preserveAspectRatio="none"
+            >
+              <path
+                d="M 0 300 Q 420 230 780 250 T 1440 160"
+                fill="none"
+                stroke="#2E6BFF"
+                strokeWidth="3"
+                strokeDasharray="6 12"
               />
-            </div>
+            </svg>
+
+            <img
+              src={paperPlane}
+              alt="paper plane"
+              className="research-paper-plane"
+            />
           </div>
 
           {/* 아래: 카드 3개 + 결과 텍스트 (좌/우) */}

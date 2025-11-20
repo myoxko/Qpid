@@ -12,6 +12,8 @@
   display: flex;
   align-items: flex-start;
   box-sizing: border-box;
+
+  
 }
 
 .persona-section-inner {
@@ -26,6 +28,8 @@
   gap: 1rem;
   align-items: center;
   text-align: center;
+
+  margin-bottom: 20rem;
 }
 
 /* 상단 텍스트 */
@@ -93,8 +97,9 @@
   font-size: 2.4rem;
   text-align: center;
   color: #ffffff;
-  padding-top: 2rem;
   z-index: 6;
+
+  margin-top: -6rem;
 }
 
 .persona-span {
@@ -185,14 +190,13 @@
    - 위: pill + 제목
    - 아래: 비주얼 (항상 카드 좌측 하단) */
 
-.service-panel-inner {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;      /* 좌측 정렬 */
-  justify-content: space-between; /* 위/아래로 양끝 배치 → body가 항상 카드 하단 */
-}
-
+   .service-panel-inner {
+    height: 100%;
+    display: flex;
+    flex-direction: column;         // 위: body, 아래: header
+    align-items: flex-start;        // 좌측 정렬
+    justify-content: space-between; // 위/아래로 양 끝 배치
+  }
 /* pill + 타이틀 공통 */
 
 .service-panel-header {
@@ -201,19 +205,32 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 1.6rem;
+  /* 카드 하단에 자연스럽게 붙도록 별도 포지션 필요 없음 */
 }
 
-.service-pill {
+.service-title-pill {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.45rem 1.6rem;
+  padding: 0.5rem 1.8rem;
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  background: rgba(0, 0, 0, 0.7);
-  color: #fff;
+
+  /* 글래스모피즘 다크 */
+  background: radial-gradient(
+      circle at top left,
+      rgba(255, 255, 255, 0.16),
+      rgba(15, 23, 42, 0.9)
+    );
+  border: 1px solid rgba(148, 163, 184, 0.55);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.75);
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  color: #ffffff;
   font-size: 0.95rem;
   letter-spacing: -0.03em;
+  white-space: nowrap;
 }
 
 .service-panel-title {
@@ -276,3 +293,5 @@
     height: clamp(5rem, 28%, 9rem);
   }
 }
+
+

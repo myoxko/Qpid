@@ -291,6 +291,8 @@
   gap: 3.2rem;
   position: relative;
   z-index: 2;
+
+  margin-bottom: 18rem;
 }
 
 /* 카드 3개 */
@@ -375,14 +377,15 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 10rem;
+  font-size: 1.4rem !important;
 
   width: auto;
   align-self: flex-start;
 
   padding: 1rem 4rem;   // 좌우 여백 줄임
-  border-radius: 20px;
-  border: 2px solid rgba(0, 0, 0, 0.16);
+  border-radius: 25px;
+  border: 3px solid rgba(0, 0, 0, 0.16);
+  margin-bottom: 2rem;
 
   font-size: 1rem;
   font-weight: 500;
