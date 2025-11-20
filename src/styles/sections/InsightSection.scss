@@ -375,17 +375,24 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.3rem 0.45rem; 
-  border-radius: 999px;
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  font-size: 0.9rem;
+  font-size: 10rem;
+
+  width: auto;
+  align-self: flex-start;
+
+  padding: 1rem 4rem;   // 좌우 여백 줄임
+  border-radius: 20px;
+  border: 2px solid rgba(0, 0, 0, 0.16);
+
+  font-size: 1rem;
   font-weight: 500;
-  margin-bottom: 1rem;
+  background: #fff;
+  color: #333;
 }
 
 .research-result-text {
   font-family: $font-family-base;
-  font-size: 2rem;
+  font-size: 3rem;
   line-height: 1.7;
   font-weight: 500;
   color: #111;
