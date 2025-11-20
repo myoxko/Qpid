@@ -6,6 +6,7 @@ import blueFlower from "../assets/images_ms/insight_blueflower.svg";
 import orangeFlower from "../assets/images_ms/insight_orangeflower.svg";
 import yellowFlower from "../assets/images_ms/insight_yellowflower.svg";
 import paperPlane from "../assets/images_ms/insight_paperplane.svg";
+import insight_stroke from "../assets/images_ms/insight_stroke.svg";
 
 export default function InsightSection() {
   const leftCards = [
@@ -182,7 +183,7 @@ export default function InsightSection() {
           </div>
 
           {/* 섹션 전체를 가로지르는 비행기 레이어 */}
-          <div className="research-plane-layer">
+          {/* <div className="research-plane-layer">
             <svg
               className="research-plane-path"
               viewBox="0 0 1440 360"
@@ -202,7 +203,19 @@ export default function InsightSection() {
               alt="paper plane"
               className="research-paper-plane"
             />
-          </div>
+          </div> */}
+
+            <img
+              src={paperPlane}
+              alt="paper plane"
+              className="paper-plane-lock"
+            />
+
+            <img
+              src={insight_stroke}
+              alt="paper plane"
+              className="insight_stroke"
+            />
 
           {/* 아래: 카드 3개 + 결과 텍스트 (좌/우) */}
           <div className="research-main-row">

@@ -44,6 +44,7 @@
   flex-direction: column;
   gap: 1.2rem;
   margin: 10rem;
+  margin-top: 1.5rem;
 }
 
 .goal-desc {
@@ -62,8 +63,6 @@
   font-size: 2.4rem;
   text-align: center;
   color: #ffffff;
-
-  padding-top: 8rem;
 
   z-index: 6;
 }
@@ -268,4 +267,31 @@
   .bg-overlay-qpid-wrap {
     width: 30%;
   }
+}
+
+// stroke animation
+
+/* 공통 stroke 스타일 */
+.goal-stroke {
+  display: block;
+  margin: 4rem auto;          // 위아래 간격
+  width: 100px; 
+  height: auto;
+  opacity: 100%;
+  transform: translateY(-40px);  // 위에서 내려오는 느낌
+  transition:
+    opacity 0.9s ease-out,
+    transform 0.9s ease-out;
+}
+
+.goal-stroke-top {
+  display: block;
+  margin-top: -6rem auto;          // 위아래 간격
+  width: 1000px; 
+  height: auto;
+  opacity: 100%;
+  transform: translateY(-40px);  // 위에서 내려오는 느낌
+  transition:
+    opacity 0.9s ease-out,
+    transform 0.9s ease-out;
 }

@@ -1,11 +1,46 @@
 import React, { useEffect, useRef, useState } from "react";
 import "../styles/sections/GoalSection.scss";
 
+
+
 import goal_position from "../assets/images_ms/goal_position.svg";
 import goal_qanda_desc from "../assets/images_ms/goal_qanda_desc.svg";
 import goal_piaza_desc from "../assets/images_ms/goal_piaza_desc.svg";
 import goal_arrow from "../assets/images_ms/goal_arrow.svg";
 import goal_qpid from "../assets/images_ms/goal_qpid.svg";
+
+import goal_stroke from "../assets/images_ms/goal_stroke.svg";
+import p_map_stroke from "../assets/images_ms/p_map_stroke.svg";
+
+// const strokeTopRef = useRef(null);
+// const strokeBottomRef = useRef(null);
+// const [showTopStroke, setShowTopStroke] = useState(false);
+// const [showBottomStroke, setShowBottomStroke] = useState(false);
+
+// stroke용
+// useEffect(() => {
+//   const io = new IntersectionObserver(
+//     (entries) => {
+//       entries.forEach((entry) => {
+//         if (!entry.target) return;
+
+//         if (entry.target === strokeTopRef.current) {
+//           setShowTopStroke(entry.isIntersecting);
+//         }
+//         if (entry.target === strokeBottomRef.current) {
+//           setShowBottomStroke(entry.isIntersecting);
+//         }
+//       });
+//     },
+//     { threshold: 0.2 }
+//   );
+
+//   if (strokeTopRef.current) io.observe(strokeTopRef.current);
+//   if (strokeBottomRef.current) io.observe(strokeBottomRef.current);
+
+//   return () => io.disconnect();
+// }, []);
+
 
 export default function GoalSection() {
   // 포지셔닝 맵 영역 관찰용
@@ -37,6 +72,14 @@ export default function GoalSection() {
   return (
     <div className="goal-section-root">
       <div className="goal-section-inner">
+        {/* 위쪽 stroke */}
+        <img
+          src={goal_stroke}
+          alt="골 svg 애니메이션"
+          // ref={strokeTopRef}
+          className={"goal-stroke-top"}
+        />
+
         {/* 서브 텍스트 (가운데) */}
         <p className="goal-sub">
           학생과 교수가 AI 매칭을 통해 가장 잘 맞는 지식 교류를 하도록 돕는 <br />
@@ -109,6 +152,15 @@ export default function GoalSection() {
         </div>
 
         <div className="goal-end">
+          {/* 아래쪽 stroke */}
+          <img
+            src={p_map_stroke}
+            alt="포지셔닝 맵 svg 애니메이션"
+            // ref={strokeBottomRef}
+            className={
+              "goal-stroke"
+            }
+          />
           <p className="goal-sub">
             AI 매칭 기반의 상호작용형 지식 커뮤니케이션 서비스
           </p>
