@@ -1,63 +1,401 @@
-@use "../tokens" as *;
+@use '../tokens' as *;
 
 /* SystemSection.scss
    이 파일은 'system' 섹션 전용 스타일입니다.
    여기서만 수정하면 다른 섹션에 영향 거의 없음.
 */
 
+@media (max-width: 900px) {
+  .system-section-root { padding-left: 16px; padding-right: 16px; }
+  .system-section-logo-image { width: 40%; border-radius: 20%; }
+  .system-section-logo-image2 { width: 80%; }
+  .system-1-images { gap: 1.25rem; flex-wrap: wrap; justify-content: flex-start; }
+}
+
+
 .system-section-root {
-  /* ===== 높이 커스텀 포인트 =====
-     기본은 '한 화면 이상' 차지하도록 min-height:100vh 설정.
-     만약 정확히 한 화면만 쓰고 싶으면 height:100vh 추가해도 됨.
-  */
-  min-height: var(--section-min-height, 100vh);
-
-  /* 상단 패딩: GNB(고정 네비)랑 겹치지 않게 여유 */
-  padding-top: calc($gnb-height + 2rem);
-  padding-bottom: 4rem;
-
-  /* 라이트 테마 배경 / 섹션 라인 */
-  background-color: $color-bg-base;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-
-  /* 레이아웃 */
+  /* 토큰 기준으로 보면 전체 배경은 원래 #FFFFFF인데,
+     디자인 시안은 거의 아주 어두운 딥블랙/보라톤 배경 위라서
+     여기 섹션만 다크하게 오버라이드하는 걸로 감. */
+  background-color: #17181d;
+  color: #fff;
+  //============================
+  min-height: 100vh;
+  overflow: hidden;
+  width: 100%;
   display: flex;
-  align-items: flex-start; /* center로 바꾸면 수직 가운데 정렬 */
-  box-sizing: border-box;
+  flex-direction: column;   /* 자식들을 세로로 쌓기 */
+  align-items: center;      /* 내부 컨텐츠 가운데 정렬 */
+
+  /* 상하 패딩으로 여백 확보 */
+  padding-top: 120px;
+  padding-left: $page-padding-x;
+  padding-right: $page-padding-x;
 }
 
 .system-section-inner {
   width: 100%;
   max-width: $page-max-width;
   margin: 0 auto;
-  padding: 0 $page-padding-x;
-  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  row-gap: 120px; /* 위 블록 / 아래 블록 사이 거리 */
+}
 
+/* ========== [1] 상단 DESIGN 영역 ========== */
+
+/* ========== [1] 상단 DESIGN 영역 ========== */
+
+/* 상단 전체 래퍼 */
+.system-section-1 {
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+
+  @media (max-width: 900px) {
+    row-gap: 2rem;
+  }
+}
+
+/* 1) 제목 + 본문 설명 영역 (세로만) */
+.system-1-intro {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  align-items: center;
-  text-align: center;
 }
 
 .system-title {
   font-family: $font-family-display;
-  font-weight: 600;
+  font-size: 7.5rem;
   line-height: 1.2;
-  letter-spacing: -0.03em;
-  color: $gray-700;
-  font-size: 1.5rem;
-  text-transform: uppercase;
-  text-align: center;
+  font-weight: 600;
+  color: #fff;
+  margin: 0;
 }
 
 .system-desc {
-  max-width: 60ch;
   font-family: $font-family-base;
-  font-size: 1rem;
-  font-weight: 400;
+  font-size: 1.8rem;
   line-height: 1.5;
-  letter-spacing: -0.03em;
-  color: $gray-500;
-  text-align: center;
+  color: #BBBBBB;
+  margin: 0;
+  width: 100%;
+}
+
+/* 2) 이미지 영역(그리드/가로 배치 전용) */
+.system-1-images {
+  /* 이 블록 안에서만 이미지 카드 레이아웃을 제어합니다 */
+  display: flex;
+  gap: 3rem;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+
+  /* 이미지 컬럼 묶음이 오른쪽으로 붙는 느낌을 내고 싶다면 자동 여백을 줄 수 있습니다 */
+  /* 필요 없으면 이 줄은 제거하셔도 됩니다 */
+  /* margin-left: auto; */
+
+  /* 카드 컬럼들의 수직 위치 조정을 위해 자식에서 margin-top 줄 수 있도록 위 기준선 고정 */
+  align-items: flex-start;
+}
+
+/* 각 이미지 컬럼 (예: img-col-1, img-col-2, img-col-3...) */
+.img-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* 필요하다면 계단식 배치를 위해 개별 마진을 줄 수 있습니다.
+   예: 왼쪽 컬럼은 더 아래로, 오른쪽 컬럼은 더 위로 */
+.img-col-1 {
+  margin-top: 12vh;
+}
+.img-col-2 {
+  margin-top: 6vh;
+}
+.img-col-3 {
+  margin-top: 0;
+}
+
+/* 개별 카드 스타일은 기존 유지 */
+.system-img-card {
+  background-color: transparent;
+  width: 357px;
+  height: 565px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  overflow: hidden;
+}
+
+.system-img-card .card-image {
+  width: 357px;
+  height: 543px;
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 8px;
+  
+}
+
+.system-img-card .card-caption {
+  font-size: 0.7rem;
+  line-height: 1.3;
+  color: #D2D2D2;
+  word-break: break-all;
+}
+
+/* ========== [2] 하단 DESIGN SYSTEM 영역 ========== */
+/*
+이 블록은 실제로 2단 구성:
+1) 위쪽: system-heading + system-desc (단일 컬럼)
+2) 아래: color-block / typography-block (2컬럼 그리드)
+*/
+.system-section-2 {
+  /* 1) 위쪽: 제목과 설명 영역 */
+  .system-grid-intro {
+    /* grid 사용하지 않음. 그냥 세로 흐름 */
+    .system-intro {
+      max-width: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }
+
+  /* 2) 아래: 컬러 팔레트 / 타이포그래피 영역 */
+  .system-grid-rest {
+    margin-top: 100px;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+
+    @media (max-width: 900px) {
+      grid-template-columns: 1fr;
+      row-gap: 3rem;
+    }
+  }
+}
+
+/* 왼쪽 큰 컬럼 */
+.system-left-col {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 560px;
+}
+
+.system-intro-head .system-heading {
+  .arrow {
+    font-weight: 400;
+    margin-left: 8px;
+  }
+}
+
+/* 이 아래 설명문 (이미 위에서 .system-desc 썼지만
+   밑 블록에서도 같은 클래스 이름을 재사용할 거라
+   여기서도 잘 어울리게끔 유지) */
+
+/* Color 팔레트 박스 전체 */
+.color-block {
+  max-width: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.block-title {
+  font-size: 3.1rem;
+  font-weight: 600;
+  margin-top: 20px;
+  margin-bottom: 2.5rem;
+  color: $color-primary-main;
+  font-family: $font-family-base;
+}
+
+/* 팔레트 전체 그리드
+   - Primary / Sub / Grayscale 이런 식으로 3개 컬럼 */
+.palette-group {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+
+  @media (max-width: 700px) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.palette-label {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #8e8e8e;
+    margin-bottom: 2rem;
+  }
+
+.palette-image-wrapper {
+  margin-top: 20px;
+  width: 100%
+}
+
+.palette-image {
+  max-width: 150%;
+  height: auto;
+}
+
+/* 오른쪽 컬럼 (타이포 섹션) */
+.system-right-col {
+  display: flex;
+  flex-direction: column;
+  max-width: 380px;
+
+  .typography-block {
+    display: flex;
+    flex-direction: column;
+    gap: 6rem;
+    max-width: none;
+    width: 600px;
+  }
+
+  .type-family {
+    .type-font-name {
+      font-family: $font-family-display;
+      font-size: 4rem;
+      font-weight: 600;
+      line-height: 1.3;
+      color: #fff;
+      margin-top: 40px;
+    }
+  }
+
+  .type-scale-list {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0 0 0;
+
+    display: grid;
+    row-gap: 0.5rem;
+  }
+
+  .type-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 2rem;
+    font-weight: 800;
+    padding-bottom: 1.5rem;
+    font-family: $font-family-base;
+  }
+
+  .type-label {
+    color: #fff;
+    font-weight: 600;
+    text-align: left;
+  }
+
+  .type-style {
+    color: #B9B9B9;
+    font-weight: 400;
+    text-align: left;
+  }
+}
+
+/* system-section-1 레이아웃에서 쓰는 서브 래퍼 */
+.design-left {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.design-right {
+  /* 이미 .system-section-img-container 자체가 flex-wrap 이라서
+     별도 스타일 없어도 되지만, 명시적으로 적어줄 수도 있어 */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+// ================== logo ===================
+
+.system-section-logo {
+  position: relative;
+  width: 100vw;
+  height: 700px;
+  background-color: #3D72FF;
+  margin-top: 160px;
+
+  /* 부모의 패딩/중앙정렬 영향 제거 위해 좌우 보정 */
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+
+
+.system-section-logo-title {
+  padding-left: 200px;
+  padding-top: 73px;
+  font-size: 35px;
+}
+
+
+.system-section-logo-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* 섹션의 정확한 중앙 */
+  width: 15%;                     /* 원하는 값으로 조절 */
+  aspect-ratio: 1 / 1;              /* 정사각형 유지 */
+  background: #fff;
+  border-radius: 25%;
+
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 75%;
+}
+
+
+.system-section-logo2 {
+  position: relative;
+  width: 100vw;
+  height: 380px;
+  background-color: #EDF1FA;
+
+  /* 부모의 패딩/중앙정렬 영향 제거 위해 좌우 보정 */
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+
+.system-section-logo-image2 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* 섹션의 정확한 중앙 */
+  width: 50%;                   /* 원하는 값으로 조절 */
+  aspect-ratio: 1 / 1;              /* 정사각형 유지 */
+
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain; 
+}
+
+
+.system-section-mockup {
+  position: relative;
+  width: 100vw;
+  background: linear-gradient(180deg, #fff 0%, #E8F4FF 100%);
+
+  /* 풀블리드 보정 */
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+
+  /* 중앙 정렬 */
+  display: flex;
+  align-items: center;   /* 수직 중앙 */
+  justify-content: center; /* 수평 중앙 */
+}
+
+.system-section-mockup-img {
+  /* absolute 사용하지 않습니다 */
+  width: 50%;            /* 필요 시 50% → 고정/스케일 값으로 변경 */
+  max-width: 1183px;     /* 상한 설정(선택) */
+  aspect-ratio: 1183 / 1726; /* 원본 비율로 교체 (예시값) */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;  /* 비율 유지 */
 }
