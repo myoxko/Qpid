@@ -181,15 +181,20 @@
 .research-insights-section {
   width: 100%;
   margin-top: 12rem;
+
+  position: relative;   
+  overflow: visible;
 }
 
 /* 상단: 텍스트 + 비행기 */
 
 .research-top-row {
+  position: relative;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   gap: 3rem;
+  z-index: 2;           
 }
 
 .research-text-block {
@@ -223,7 +228,7 @@
 
 .research-plane-block {
   position: relative;
-  flex: 0 0 45%;      
+  flex: 0 0 45%;
   min-width: 460px;
   min-height: 320px;
   overflow: visible;
@@ -280,10 +285,12 @@
 /* 아래: 카드 3개 + 결과 텍스트 (좌/우) */
 
 .research-main-row {
-  margin-top: 4rem;
+  margin-top: 5.5rem;
   display: flex;
   align-items: flex-start;
-  gap: 3rem;
+  gap: 3.2rem;
+  position: relative;
+  z-index: 2;
 }
 
 /* 카드 3개 */
@@ -291,6 +298,10 @@
 .research-cards-row {
   display: flex;
   gap: 1.8rem;
+
+  width: 100%;
+  margin-left: calc(-1 * $page-padding-x - 4rem);
+  gap: 3rem;
 }
 
 .research-card {
@@ -303,8 +314,6 @@
   display: flex;
   flex-direction: column;
   gap: 1.8rem;
-
-  min-height: 320px;
 }
 
 .research-card-top {
@@ -335,17 +344,7 @@
   width: 38px;
   height: 38px;
 
-  animation: flower-spin 8s linear infinite;
-}
-
-/* 카드마다 속도/방향 다르게 */
-.research-card:nth-child(2) .research-card-flower {
-  animation-duration: 10s;
-}
-
-.research-card:nth-child(3) .research-card-flower {
-  animation-duration: 12s;
-  animation-direction: reverse;
+  animation: flower-spin 2s linear infinite;
 }
 
 @keyframes flower-spin {
@@ -354,7 +353,7 @@
 }
 
 .research-card-title {
-  margin-top: auto;
+  margin-top: 0px;
   font-family: $font-family-display;
   font-size: 1.4rem;
   font-weight: 600;
@@ -367,7 +366,9 @@
   align-self: stretch;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  padding-bottom: 1rem;
+
+  justify-content: end;
 }
 
 .research-result-pill {
@@ -384,14 +385,19 @@
 
 .research-result-text {
   font-family: $font-family-base;
-  font-size: 1.1rem;
+  font-size: 2rem;
   line-height: 1.7;
+  font-weight: 500;
   color: #111;
+  width: 500px;
+
+  justify-items: bottom;
 }
 
 .research-result-highlight {
   color: $color-primary-main;
-  font-weight: 600;
+  font-weight: 700;
+  background-color: #DAEAFF;
 }
 
 /* ───────────────────────────────────────────── */
@@ -406,18 +412,20 @@
   }
 
   .research-cards-row {
-    gap: 2.6rem;
+    gap: 2rem;
   }
 
   .research-card {
     flex: 0 0 320px;          /* 가로 폭 조금 넓게 */
-    min-height: 440px;        /* 세로 확실히 길게 */
+    min-height: 540px;        /* 세로 확실히 길게 */
     padding: 2.4rem 2.4rem 2.8rem;
   }
 
   .research-card-icon-wrap {
     width: 92px;
     height: 92px;
+
+    margin-top: 8rem;
   }
 
   .research-card-flower {
@@ -439,7 +447,7 @@
   }
 
   .research-result-text {
-    font-size: 1.3rem;
+    font-size: 2rem;
     line-height: 1.85;
   }
 

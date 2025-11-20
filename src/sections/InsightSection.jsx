@@ -188,7 +188,7 @@ export default function InsightSection() {
                 preserveAspectRatio="none"
               >
                 <path
-                  d="M 0 320 Q 350 200 650 260 T 1200 170"
+                  d="M 220 330 Q 460 260 720 220 T 1120 90"
                   fill="none"
                   stroke="#2E6BFF"
                   strokeWidth="3"
@@ -232,7 +232,8 @@ export default function InsightSection() {
             <div className="research-result-block">
               <span className="research-result-pill">결과</span>
               <p className="research-result-text">
-                학생과 교수의 지식 커뮤니케이션을 최적화하여{" "}
+                학생과 교수의 <br />
+                지식 커뮤니케이션을 최적화하여<br />
                 <span className="research-result-highlight">
                   지식 소통의 더 커진 세상
                 </span>
