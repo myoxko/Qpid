@@ -1,5 +1,17 @@
 @use "../tokens" as *;
 
+.home-bg-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;      /* 화면 폭 꽉! */
+  height: auto;     /* 이미지 비율 유지 */
+  object-fit: contain; /* 절대 안 짤림 */
+  z-index: 0;
+  pointer-events: none;
+
+}
+
 /* ===== 섹션 루트 ===== */
 .home-section-root {
   width: 100%;
@@ -14,6 +26,11 @@
 
   position: relative;
   overflow: hidden;
+
+  // 추가 (안 짤리고, 가운데, 반응형)
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: contain; // inline style이 우선이긴 한데, fallback용
 }
 
 /* ===== 안쪽 레이아웃 ===== */
@@ -96,41 +113,52 @@
 /* 큰 Qpid 로고 (배경 역할) */
 .home-hero-main {
   position: absolute;
-  top: 24%;         /* 기존 34% → 24% (10% 상승) */
+  top: 24%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
   display: flex;
   justify-content: center;
   z-index: 2;
+
+  /* tagline이 이 영역 기준으로 움직이도록 */
+  position: absolute;
 }
 
 .home-logo-image {
-  width: 62%;     /* 기존 68% → 62% */
-  transform: translateX(-6%);
+  width: 150%;
+  padding-top: 4rem;
 }
 
 /* 카피 텍스트 (레퍼런스처럼 오른쪽 정렬) */
 .home-tagline {
   position: absolute;
-  z-index: 3;
-  /* 폰 바로 위 / 반원 안쪽 오른쪽 */
-  top: 54%;
-  right: 14%;
-  transform: translateY(-100%);
+  /* 로고 아래쪽으로 */
+  top: 36%;        /* 로고 이미지 아래쪽 기준 */
+  left: 72%;
+  transform: translateX(-50%); /* 중앙 정렬 */
 
-  max-width: 360px;
-  font-family: $font-family-base;
+  margin-top: 0.8rem;   /* 로고 아래 여백 */
+
+  text-align: left;
+  color: $color-primary-main;
   font-size: 1rem;
   line-height: 1.6;
-  color: #ffffff;
-  text-align: right;
+  z-index: 3;
+
+  width: 400px;
+  font-family: $font-family-base;
+  font-size: 2.1rem;
+  font-weight: 400;
 }
 
+.home-bold {
+  font-weight: 600;
+}
 
 /* ========= 폰 두 개 ========= */
 .home-phones {
-  top: 22%;
+  top: 40%;
   position: relative;
   z-index: 3;
   width: 100%;
@@ -143,15 +171,16 @@
 
 /* 폰 공통 */
 .home-phone {
-  width: clamp(260px, 23vw, 380px);
+  width: clamp(500px, 23vw, 380px);
   height: auto;
   object-fit: contain;
   filter: drop-shadow(0 28px 72px rgba(0, 0, 0, 0.28));
 }
 
 /* 왼쪽 폰 약간 위로 */
-.home-phone--left {
-  margin-bottom: 26px;
+.home-phone--right {
+  margin-bottom: -120px;   /* 오른쪽 폰만 아래로 확실하게 내림 */
+  margin-top: 140px;       /* 기존 값 유지 */
 }
 
 /* ===== 폰 플로팅 애니메이션 ===== */
@@ -161,80 +190,67 @@
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-10px);
+    transform: translateY(-40px);
   }
 }
 
 .home-phone {
-  animation: floatPhone 4.2s ease-in-out infinite;
+  animation: floatPhone 4s ease-in-out infinite;
 }
 
-.home-phone--right {
-  animation-duration: 4.8s;
-  animation-delay: 0.25s;
-}
 
 /* ========= 꽃/눈송이 데코 ========= */
-.home-deco {
-  position: absolute;
-  z-index: 2;
-  pointer-events: none;
-  opacity: 0.96;
-  animation: floatDeco 11s ease-in-out infinite alternate;
-}
 
-/* 위치/크기 (레퍼런스 기준 튜닝) */
-.home-deco--5dot-left {
-  left: 13%;
-  bottom: 22%;
-  width: clamp(64px, 5.5vw, 92px);
-  --deco-rot: 0deg;
-  animation-duration: 10.5s;
-}
-
-.home-deco--clover-right {
-  right: 15%;
-  bottom: 15%;
-  width: clamp(86px, 7vw, 120px);
-  --deco-rot: 10deg;
-  animation-duration: 12s;
-}
-
-.home-deco--star-left {
-  left: 20%;
-  top: 54%;
-  width: clamp(58px, 4.8vw, 86px);
-  --deco-rot: -14deg;
-  animation-duration: 13s;
-}
-
-.home-deco--star-right {
-  right: 6%;
-  top: 72%;
-  width: clamp(80px, 6.5vw, 118px);
-  --deco-rot: 18deg;
-  animation-duration: 14s;
-  opacity: 0.9;
-}
-
-/* 데코 플로팅 */
-@keyframes floatDeco {
-  0% {
-    transform: translate3d(0, 0, 0) rotate(var(--deco-rot, 0deg));
-  }
-  50% {
-    transform: translate3d(0, -10px, 0)
-      rotate(calc(var(--deco-rot, 0deg) + 5deg));
-  }
+@keyframes jellyBounce {
+  0%,
   100% {
-    transform: translate3d(0, 0, 0) rotate(var(--deco-rot, 0deg));
+    transform: scale(1, 1);
   }
+
+  25% {
+    transform: scale(1.02, 0.95);   /* 좌우 살짝 늘어나고 위아래 눌림 */
+  }
+
+  50% {
+    transform: scale(0.94, 1.07);   /* 위아래 늘어나고 좌우 눌림 */
+  }
+
+  75% {
+    transform: scale(1.05, 0.95);   /* 다시 살짝 말랑 */
+  }
+}
+
+.flower1 {
+  position: absolute;   
+  top: 50%;              
+  left: 3%;
+  width: 300px;
+
+  z-index: 10;
+  pointer-events: none;
+  transform: rotate(-10deg);
+
+  animation: jellyBounce 4s ease-in-out infinite;
+
+}
+
+.flower2 {
+  position: absolute; 
+  bottom: 10%;            
+  right: 8%;
+  width: 300px;
+
+  z-index: 10;        
+  pointer-events: none;
+  transform: rotate(20deg);
+
+  animation: jellyBounce 3s ease-in-out infinite;
+
 }
 
 /* ===== 모션 줄이기 ===== */
 @media (prefers-reduced-motion: reduce) {
-  .home-phone,
-  .home-deco {
+  .home-phone {
     animation: none !important;
     transform: none !important;
   }
@@ -296,6 +312,7 @@
 
   .home-logo-image {
     width: min(80vw, 420px);
+
   }
 
   /* 모바일에서는 카피를 로고 아래 중앙으로 */

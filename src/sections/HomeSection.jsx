@@ -10,37 +10,30 @@ import home_flower_star from "../assets/images_ms/home_flower_clover.svg";
 import home_flower_star_blur from "../assets/images_ms/home_flower_star.svg";
 import home_union from "../assets/images_ms/home_union.svg";
 import home_union_op from "../assets/images_ms/home_union_op.svg";
-import home_circle from "../assets/images_ms/home_circle.svg";
+// import home_circle from "../assets/images_ms/home_circle.svg";
+import home_thumbnail from "../assets/images_ms/home_thumbnail.svg";
+
 
 // ... import 부분 동일
 
 export default function HomeSection() {
   return (
     <div className="home-section-root">
+      <img src={home_flower_5dot} alt="" className="flower1" />
+      <img src={home_flower_clover} alt="" className="flower2" />
+      <img src={home_thumbnail} alt="배경 이미지" className="home-bg-image" />
+
       <div className="home-section-inner">
         <div className="home-hero">
-          {/* 좌/우 블루 배경 */}
-          <img
-            src={home_union}
-            alt=""
-            className="home-union home-union--left"
-            aria-hidden="true"
-          />
-          <img
-            src={home_union_op}
-            alt=""
-            className="home-union home-union--right"
-            aria-hidden="true"
-          />
 
           {/* ===== 흰 반원 + 로고 + 폰 + 데코 ===== */}
           <div className="home-hero-visual">
             {/* 흰 반원 */}
-            <img
+            {/* <img
               src={home_circle}
               alt="큐피드 메인 배경"
               className="home-circle"
-            />
+            /> */}
 
             {/* 큰 Qpid 로고 (배경 역할) */}
             <div className="home-hero-main">
@@ -51,11 +44,11 @@ export default function HomeSection() {
               />
             </div>
 
-            {/* 👉 카피를 따로 빼서 폰 위에 배치 */}
+            {/* 카피를 따로 빼서 폰 위에 배치 */}
             <p className="home-tagline">
-              교수와 학생을 잇는
+              <span className="home-bold">교수</span>와 <span className="home-bold">학생</span>을 잇는
               <br />
-              AI 매칭 기반 지식 교류 서비스
+              <span className="home-bold">AI 매칭 기반 지식 교류</span> 서비스
             </p>
 
             {/* 폰 두 개 */}
@@ -72,31 +65,6 @@ export default function HomeSection() {
               />
             </div>
 
-            {/* 꽃/눈송이 데코 */}
-            <img
-              src={home_flower_5dot}
-              alt=""
-              aria-hidden="true"
-              className="home-deco home-deco--5dot-left"
-            />
-            <img
-              src={home_flower_clover}
-              alt=""
-              aria-hidden="true"
-              className="home-deco home-deco--clover-right"
-            />
-            <img
-              src={home_flower_star}
-              alt=""
-              aria-hidden="true"
-              className="home-deco home-deco--star-left"
-            />
-            <img
-              src={home_flower_star_blur}
-              alt=""
-              aria-hidden="true"
-              className="home-deco home-deco--star-right"
-            />
           </div>
         </div>
       </div>
